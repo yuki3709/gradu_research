@@ -1,39 +1,35 @@
-/* header files */
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
 
-/* macros */
 #define N 256
 
-/* main */
 int main(void) {
     FILE *fp;
     char *filename = "bmi.c";
     char readline[N] = {'\0'};
-    char condition[N] = {'\0'};
+    char *condition;
+    char con[N];
+    char *left_parenthesis;
+    char *right_parenthesis;
+    fp = fopen(filename, "r");
 
-    /* ファイルのオープン */
-    if ((fp = fopen(filename, "r")) == NULL) {
+    if (fp == NULL) {
         fprintf(stderr, "%sのオープンに失敗しました.\n", filename);
         exit(EXIT_FAILURE);
     }
 
-    /* ファイルの終端まで文字を読み取り表示する */
     while ( fgets(readline, N, fp) != NULL ) {
-        if(strstr(readline, "else if")){
-            strncpy(condition, readline+11, strlen(readline));
+        if(strstr(readline, "if")){
+            left_parenthesis = strstr(readline, "(");
+            condition = left_parenthesis;
+            right_parenthesis = strstr(condition, ")");
+            con = condition;
             printf("%s", condition);
-            printf(" \n");
-        }
-        else if(strstr(readline, "if")){
-            strncpy(condition, readline+5, strlen(readline));
-            printf("%s", condition);
-            printf(" \n");
+            printf("%s", right_parenthesis);
         }
     }
 
-    /* ファイルのクローズ */
     fclose(fp);
 
     return EXIT_SUCCESS;
