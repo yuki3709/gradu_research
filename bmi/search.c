@@ -29,18 +29,22 @@ int main(void) {
         //     printf("%s", condition);
         //     printf("%s", right_parenthesis);
         // }
+
+        //条件文の抜き出し
         if(strstr(readline, "if")){
                 for(i = 0; readline[i]; i++){
                     if(readline[i]=='(')left_parenthesis=i;
-                    // printf("左%d",left_parenthesis);
                     if(readline[i]==')')right_parenthesis=i;
-                    // printf("右%d",right_parenthesis);
             }
                 for(i=left_parenthesis+1; i<right_parenthesis; i++){
                     printf("%c",readline[i]);
                     if(i==right_parenthesis-1)printf("\n");
                 }
-                
+                printf("!(");
+                for(i=left_parenthesis+1; i<right_parenthesis; i++){
+                    printf("%c",readline[i]);
+                    if(i==right_parenthesis-1)printf(")\n");
+                }
         }
     }
 
