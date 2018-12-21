@@ -36,9 +36,10 @@ int main(void) {
                     if(readline[i]==')')right_parenthesis=i;
                     // printf("右%d",right_parenthesis);
             }
-                // for(i=left_parenthesis+1; right_parenthesis-1; i++){
-                //     printf("%c",readline[i]);            
-                // }
+                for(i=left_parenthesis+1; i<right_parenthesis; i++){
+                    printf("%c",readline[i]);
+                    if(i==right_parenthesis-1)printf("\n");
+                }
                 
         }
     }
