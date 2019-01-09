@@ -11,3 +11,5 @@
 \contentsline {chapter}{\numberline {第4章}検証}{4}{chapter.4}
 \contentsline {section}{\numberline {4.1}背景}{4}{section.4.1}
 \contentsline {chapter}{\numberline {第5章}まとめ}{5}{chapter.5}
+\contentsline {chapter}{謝 辞}{6}{chapter*.2}
+\contentsline {chapter}{\numberline {参 考 文 献}}{7}{chapter*.3}

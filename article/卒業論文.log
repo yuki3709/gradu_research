@@ -1,4 +1,4 @@
-This is e-pTeX, Version 3.14159265-p3.8.0-180226-2.6 (utf8.sjis) (TeX Live 2018/W32TeX) (preloaded format=platex 2018.4.9)  9 JAN 2019 20:19
+This is e-pTeX, Version 3.14159265-p3.8.0-180226-2.6 (utf8.sjis) (TeX Live 2018/W32TeX) (preloaded format=platex 2018.4.9)  9 JAN 2019 20:57
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
@@ -269,6 +269,11 @@ LaTeX Font Info:    External font `cmex10' loaded for size
 (Font)              <8> on input line 2.
 LaTeX Font Info:    External font `cmex10' loaded for size
 (Font)              <6> on input line 2.
+
+Overfull \hbox (9.0pt too wide) detected at line 15
+\JY1/gt/m/n/12 参 考 文 献 
+ []
+
 )
 \tf@toc=\write4
 \openout4 = `卒業論文.toc'.
@@ -304,25 +309,30 @@ LaTeX Font Info:    Font shape `JY1/mc/bx/n' in size <14.4> not available
 
 ]
 第 5 章
-Package atveryend Info: Empty hook `BeforeClearDocument' on input line 79.
 [5
 
+] [6
+
 ]
-Package atveryend Info: Empty hook `AfterLastShipout' on input line 79.
+Package atveryend Info: Empty hook `BeforeClearDocument' on input line 84.
+ [7
+
+]
+Package atveryend Info: Empty hook `AfterLastShipout' on input line 84.
  (./卒業論文.aux)
-Package atveryend Info: Empty hook `AtVeryEndDocument' on input line 79.
-Package atveryend Info: Executing hook `AtEndAfterFileList' on input line 79.
+Package atveryend Info: Empty hook `AtVeryEndDocument' on input line 84.
+Package atveryend Info: Executing hook `AtEndAfterFileList' on input line 84.
 Package rerunfilecheck Info: File `卒業論文.out' has not changed.
-(rerunfilecheck)             Checksum: 6C3BFE8D66E0C31C281C0B8FD4E9B128;791.
-Package atveryend Info: Empty hook `AtVeryVeryEnd' on input line 79.
+(rerunfilecheck)             Checksum: 409F531CB77F506AF68FBF95DE2EF57A;872.
+Package atveryend Info: Empty hook `AtVeryVeryEnd' on input line 84.
  ) 
 Here is how much of TeX's memory you used:
- 6188 strings out of 493281
- 89204 string characters out of 6146980
- 181939 words of memory out of 5000000
- 10106 multiletter control sequences out of 15000+600000
+ 6189 strings out of 493281
+ 89208 string characters out of 6146980
+ 182072 words of memory out of 5000000
+ 10107 multiletter control sequences out of 15000+600000
  16555 words of font info for 65 fonts, out of 8000000 for 9000
  929 hyphenation exceptions out of 8191
- 28i,8n,32p,293b,352s stack positions out of 5000i,500n,10000p,500000b,80000s
+ 28i,8n,32p,293b,376s stack positions out of 5000i,500n,10000p,500000b,80000s
 
-Output written on 卒業論文.dvi (7 pages, 9528 bytes).
+Output written on 卒業論文.dvi (9 pages, 10776 bytes).
