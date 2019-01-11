@@ -1,4 +1,4 @@
-This is e-pTeX, Version 3.14159265-p3.8.0-180226-2.6 (utf8.sjis) (TeX Live 2018/W32TeX) (preloaded format=platex 2018.4.9)  11 JAN 2019 15:53
+This is e-pTeX, Version 3.14159265-p3.8.0-180226-2.6 (utf8.sjis) (TeX Live 2018/W32TeX) (preloaded format=platex 2018.4.9)  11 JAN 2019 16:18
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
@@ -333,6 +333,6 @@ Here is how much of TeX's memory you used:
  10107 multiletter control sequences out of 15000+600000
  16555 words of font info for 65 fonts, out of 8000000 for 9000
  929 hyphenation exceptions out of 8191
- 28i,8n,32p,665b,376s stack positions out of 5000i,500n,10000p,500000b,80000s
+ 28i,8n,32p,617b,376s stack positions out of 5000i,500n,10000p,500000b,80000s
 
-Output written on 卒業論文.dvi (9 pages, 12012 bytes).
+Output written on 卒業論文.dvi (9 pages, 12324 bytes).
