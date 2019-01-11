@@ -9,7 +9,8 @@ double BMI(double x, double y){
 int main(void){
 	double height, weight, bmi = 0;
 	printf("身長と体重を入力してください。\n");
-	scanf("%lf, %lf", &height, &weight);
+	scanf("%lf", &height);
+	scanf("%lf", &weight);
 
 	if (height <= 0 || weight <= 0) {
 		printf("0より大きい値を入力してください。\n");
