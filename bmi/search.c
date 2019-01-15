@@ -54,15 +54,15 @@ int main(void) {
         return -1;
     }
     while ( fgets(readline, N, fp) != NULL ) {
-        //入力のデータ構造
-        if(strstr(readline, "main"))main_flag = 1;
-        if(main_flag==1){
-            if(strstr(readline, variable1))var1_type_check++;
-            //     if(var1_type_check==1){
-                // printf("a");
-                // var1_type_check++;
-            // }
-        }
+        // 入力のデータ構造
+        // if(strstr(readline, "main"))main_flag = 1;
+        // if(main_flag==1){
+        //     if(strstr(readline, variable1))var1_type_check++;
+        //         if(var1_type_check==1){
+        //         printf("a");
+        //         var1_type_check++;
+        //     }
+        // }
         if(strstr(readline, "scanf")){
                 for(i = 0; readline[i]; i++){
                     if(readline[i]==',')comma_num=i;

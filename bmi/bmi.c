@@ -16,7 +16,7 @@ int main(void){
 
 	if (height <= 0 || weight <= 0) {
 		printf("0より大きい値を入力してください。\n");
-		return 0;
+		return -1;
 	}
 	bmi = BMI(height, weight);
 
