@@ -8,7 +8,7 @@ int main(void) {
     FILE *fp;
     char *filename = "bmi.c";
     char readline[N] = {'\0'};
-    int i = 0, j = 0;
+    int i, j = 0;
     char temp, data[N][N];
     fp = fopen(filename, "r");
     memset(data, 0, sizeof(data));
