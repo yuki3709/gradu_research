@@ -9,33 +9,77 @@ int main(void) {
     char *filename = "bmi.c";
     char readline[N] = {'\0'};
     char condition;
-    char con[N];
+    char variable1[20],variable2[20];
     int i;
-    int left_parenthesis=0;
-    int right_parenthesis=0;
+    int main_flag = 0;
+    int var1_type_check, var2_type_check = 0;
+    int variable_count = 0;
+    int left_parenthesis;
+    int right_parenthesis;
+    int comma_num;
+    int address_num;
     fp = fopen(filename, "r");
 
     if (fp == NULL) {
         fprintf(stderr, "%sのオープンに失敗しました.\n", filename);
-        exit(EXIT_FAILURE);
+        return -1;
     }
-
     while ( fgets(readline, N, fp) != NULL ) {
-        // if(strstr(readline, "if")){
-        //     left_parenthesis = strstr(readline, "(");
-        //     condition = left_parenthesis;
-        //     right_parenthesis = strstr(condition, ")");
-        //     con = condition;
-        //     printf("%s", condition);
-        //     printf("%s", right_parenthesis);
-        // }
-
+        //入力される変数を見つける
+         if(strstr(readline, "scanf")){
+                for(i = 0; readline[i]; i++){
+                    if(readline[i]==',')comma_num=i;
+                    if(readline[i]=='&')address_num=i;
+                    if(readline[i]==')')right_parenthesis=i;
+                }
+                if(variable_count==0){
+                    for(i=comma_num+3; i<right_parenthesis; i++){
+                        if(i!=address_num)variable1[i-(comma_num+3)]=readline[i];
+                    }
+                    printf("%s\n",variable1);
+                }
+                if(variable_count==1){
+                    for(i=comma_num+3; i<right_parenthesis; i++){
+                        if(i!=address_num)variable2[i-(comma_num+3)]=readline[i]; 
+                    }
+                }
+        variable_count++;
+        }
+    }
+    fclose(fp);
+    fp = fopen(filename, "r");
+    if (fp == NULL) {
+        fprintf(stderr, "%sのオープンに失敗しました.\n", filename);
+        return -1;
+    }
+    while ( fgets(readline, N, fp) != NULL ) {
+        //入力のデータ構造
+        if(strstr(readline, "main"))main_flag = 1;
+        if(main_flag==1){
+            if(strstr(readline, variable1))var1_type_check++;
+            //     if(var1_type_check==1){
+                // printf("a");
+                // var1_type_check++;
+            // }
+        }
+        if(strstr(readline, "scanf")){
+                for(i = 0; readline[i]; i++){
+                    if(readline[i]==',')comma_num=i;
+                    if(readline[i]=='&')address_num=i;
+                    if(readline[i]==')')right_parenthesis=i;
+                }
+                for(i=comma_num+1; i<right_parenthesis; i++){
+                    if(i==comma_num+1)printf("(");
+                    if(i!=address_num)printf("%c",readline[i]);
+                    if(i==right_parenthesis-1)printf(")\n");
+                }
+        }
         //条件文の抜き出し
         if(strstr(readline, "if")){
                 for(i = 0; readline[i]; i++){
                     if(readline[i]=='(')left_parenthesis=i;
                     if(readline[i]==')')right_parenthesis=i;
-            }
+                }
                 for(i=left_parenthesis+1; i<right_parenthesis; i++){
                     printf("%c",readline[i]);
                     if(i==right_parenthesis-1)printf("\n");
@@ -46,9 +90,8 @@ int main(void) {
                     if(i==right_parenthesis-1)printf(")\n");
                 }
         }
-    }
-
+    }      
     fclose(fp);
 
-    return EXIT_SUCCESS;
+    return 0;
 }
