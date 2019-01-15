@@ -1,3 +1,5 @@
+height
+weight
 ( height)
 ( weight)
 height <= 0 || weight <= 0

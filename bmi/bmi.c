@@ -3,11 +3,11 @@
 #include <stdio.h>
 
 /*BMIの定義*/
-double BMI(double x, double y){
-	return y / ((x * x) / 10000);
+double BMI(double height, double weight){
+	return weight / ((height * height) / 10000);
 }
 int main(void){
-	double height, weight, bmi = 0;
+	double height, weight, bmi;
 	printf("身長を入力してください。\n");
 	scanf("%lf", &height);
 	printf("体重を入力してください。\n");
