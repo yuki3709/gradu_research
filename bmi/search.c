@@ -12,6 +12,7 @@ int main(void) {
     char variable1[20],variable2[20];
     int i;
     int main_flag = 0;
+    int function_flag = 0;
     int var1_type_check, var2_type_check = 0;
     int variable_count = 0;
     int left_parenthesis;
@@ -90,6 +91,14 @@ int main(void) {
                     if(i==right_parenthesis-1)printf(")\n");
                 }
         }
+        // 関数の抜き出し
+        if(!((strstr(readline, "if"))) &&
+            !((strstr(readline, "while"))) &&
+            !((strstr(readline, "for"))) &&
+            !((strstr(readline, "main"))) &&
+            ((strstr(readline,"){"))))function_flag=1;
+        if(function_flag==1)printf("%s",readline);
+        if((strstr(readline,"}")))function_flag=0;
     }      
     fclose(fp);
 

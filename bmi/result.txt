@@ -1,4 +1,7 @@
 heightÿ
+double BMI(double height, double weight){
+	return weight / ((height * height) / 10000);
+}
 ( height)
 ( weight)
 height <= 0 || weight <= 0
