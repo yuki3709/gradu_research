@@ -1,4 +1,3 @@
-//尾崎　裕樹　1515015
 #define _CRT_SECURE_NO_WARNINGS
 #include <stdio.h>
 
@@ -11,7 +10,6 @@ int main(void){
 	printf("身長を入力してください。\n");
 	scanf("%lf", &height);
 	printf("体重を入力してください。\n");
-
 	scanf("%lf", &weight);
 
 	if (height <= 0 || weight <= 0) {
