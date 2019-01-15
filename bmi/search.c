@@ -11,6 +11,7 @@ int main(void) {
     char condition;
     char variable1[20],variable2[20];
     int i;
+    int main_flag = 0;
     int var1_type_check, var2_type_check = 0;
     int variable_count = 0;
     int left_parenthesis;
@@ -26,39 +27,40 @@ int main(void) {
     while ( fgets(readline, N, fp) != NULL ) {
         //入力される変数を見つける
          if(strstr(readline, "scanf")){
-            variable_count++;
                 for(i = 0; readline[i]; i++){
                     if(readline[i]==',')comma_num=i;
                     if(readline[i]=='&')address_num=i;
                     if(readline[i]==')')right_parenthesis=i;
                 }
-                if(variable_count==1){
+                if(variable_count==0){
                     for(i=comma_num+3; i<right_parenthesis; i++){
                         if(i!=address_num)variable1[i-(comma_num+3)]=readline[i];
+                    }
+                    printf("%s\n",variable1);
                 }
-                printf("%s\n",variable1);
-                }
-                if(variable_count==2){
+                if(variable_count==1){
                     for(i=comma_num+3; i<right_parenthesis; i++){
                         if(i!=address_num)variable2[i-(comma_num+3)]=readline[i]; 
+                    }
                 }
-                printf("%s\n",variable2);
-                }
+        variable_count++;
         }
     }
     fclose(fp);
     fp = fopen(filename, "r");
-
     if (fp == NULL) {
         fprintf(stderr, "%sのオープンに失敗しました.\n", filename);
         return -1;
     }
     while ( fgets(readline, N, fp) != NULL ) {
         //入力のデータ構造
-        if(strstr(readline, variable1)){
-            if(var1_type_check==0){
+        if(strstr(readline, "main"))main_flag = 1;
+        if(main_flag==1){
+            if(strstr(readline, variable1))var1_type_check++;
+            //     if(var1_type_check==1){
                 // printf("a");
-            }
+                // var1_type_check++;
+            // }
         }
         if(strstr(readline, "scanf")){
                 for(i = 0; readline[i]; i++){
