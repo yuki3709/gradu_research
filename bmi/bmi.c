@@ -11,6 +11,7 @@ int main(void){
 	printf("身長を入力してください。\n");
 	scanf("%lf", &height);
 	printf("体重を入力してください。\n");
+
 	scanf("%lf", &weight);
 
 	if (height <= 0 || weight <= 0) {
