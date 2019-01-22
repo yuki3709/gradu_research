@@ -23,7 +23,7 @@
 \DeclareOption{final}{\setlength\overfullrule{0pt}}
 \ExecuteOptions{12pt,final}
 \ProcessOptions
-\LoadClass[a4j,\@tpuptsize]{jreport}
+\LoadClass[a4j,\@tpuptsize]{jsreport}
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 % Chapter の前後のスペースを小さくする
