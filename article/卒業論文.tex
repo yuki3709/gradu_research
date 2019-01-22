@@ -14,7 +14,6 @@ stringstyle={\small\ttfamily},
 frame={tb}, 
 breaklines=true, 
 columns=[l]{fullflexible},% 
-numbers=left,% 
 xrightmargin=0zw,% 
 xleftmargin=3zw,% 
 numberstyle={\scriptsize},% 
@@ -69,12 +68,13 @@ morecomment=[l]{//}%
 \chapter{プログラミング演習におけるテストケース評価システム}
 本章では本研究の関連研究~\cite{a1}について説明する。関連研究では、学生自身が適切なテストケースを設計できるようになるために、作成したテストケースを評価してアドバイスを行うシステムが提案されている。このシステムでは、教員によって演習問題毎にテストケースの評価基準とテストケースが不足していた場合に表示するアドバイスが記述される。演習問題毎にテストしなければならない値や入力のデータ数が異なるため、評価基準は演習問題を分析した上で、入力のデータ構造を定義してから記述される。
 \section{テストケース評価システム}
-関連研究において、学習者が作成するプログラムは、C言語でmain関数のみか、main関数と数個の関数で記述され、データのやり取りが標準入出力となるプログラムとし、プログラムの入出力が演習問題の仕様に合致するかのテストを行うことを想定されている。
 関連研究では、教員があらかじめテストケース評価基準を作成し、学生が設計したテストケースが評価基準をどの程度パスできるかを判定することによって、テストケースの評価が行われている。評価基準をパスしない場合にアドバイスを表示することで、不足しているテストケースを把握させた。関連研究において、テストケースの評価はPHPで行われ、評価基準は次のようにタブ区切り形式でテキストとして記述された。
 
 \begin{minipage}[b]{.7\textwidth}
 \begin{itembox}[l]{評価基準の記述形式}
+{\tt
 　評価基準番号 TAB 判定条件 TAB アドバイス
+}
 \end{itembox}
 \end{minipage}
 
@@ -83,6 +83,7 @@ morecomment=[l]{//}%
 
 \begin{minipage}[b]{.7\textwidth}
 \begin{itembox}[l]{評価基準の記述例1}
+{\tt
 1 TAB age==20 TAB 成年の最低年齢
 
 1 TAB age>=20 TAB 成年の場合
@@ -94,6 +95,7 @@ morecomment=[l]{//}%
 2 TAB age<=0 \&\& age<20 TAB 未成年の場合
 
 3 TAB age<0 TAB 年齢がマイナスの場合
+}
 \end{itembox}
 \end{minipage}
 
@@ -101,7 +103,9 @@ morecomment=[l]{//}%
 
 \begin{minipage}[b]{.7\textwidth}
 \begin{itembox}[l]{評価基準のテストカバレッジ（％）}
+{\tt
 学習者のテストケースがパスした評価基準グループ数÷\\教員が記述した評価基準グループ数×100
+}
 \end{itembox}
 \end{minipage}
 
@@ -112,6 +116,7 @@ morecomment=[l]{//}%
 
 \begin{minipage}[b]{.7\textwidth}
 \begin{itembox}[l]{入力データ構造の定義}
+{\tt
 データ構造 ::== [‘（’変数リスト‘）’[出現回数]? ]+
 
 変数リスト ::== 型 変数名[‘,’型 変数名]*
@@ -121,26 +126,67 @@ morecomment=[l]{//}%
 式 ::== 変数名 | 数値 | 式 演算子 式
 
 演算子 :== ‘+’|‘*’
+}
 \end{itembox}
 \end{minipage}
+
 \section{関数定義}
 複数の入力データに対する処理や、頻繁に用いられる処理を記述するための関数を定義する方法が設計された。複数の身体データを読み込んで、身長の最大値を表示する課題の場合、最大値が複数存在するテストの評価基準は、引数のリストの最大値の個数を返す関数countmax()を定義して、次のように記述される。なお、実引数heightは全身長データのリストである。
-\begin{itembox}[l]{評価基準の記述例2}
+
+\begin{minipage}[b]{.8\textwidth}
+\begin{itembox}[l]{関数を用いた評価基準の記述例}
+{\tt
 1 TAB countmax(height)>=2 TAB 身長の最大値が複数の場合
-\end{itembox}
-\begin{minipage}[b]{.7\textwidth}
-\begin{itembox}[l]{countmax 関数}
-function countmax(\$list)\{
-
-\hspace{15pt}\$lmax = max(\$list);
-
-\hspace{15pt}return count(array\_keys(\$list, \$lmax));
-
-\}
+}
 \end{itembox}
 \end{minipage}
+\begin{lstlisting}[caption = countmax 関数, basicstyle=\ttfamily\footnotesize, frame=single]
+function countmax($list){
 
+	$lmax = max($list);
 
+	return count(array_keys($list, $lmax));
+
+}
+\end{lstlisting}
+
+\section{評価基準の具体例}
+入力が比較的複雑になる課題として、ボウリングの得点計算が例示されている。なおデータ構造のuintは0と正の整数の型である。
+\begin{itembox}[l]{ボウリングの点の計算の課題}
+ボウリングは、１フレーム目から１０フレーム目までの倒れたピンの数によって得点が決まる。フレームごとに倒したピンの数を読み込み、各フレームごとの得点を計算して表示すること。なお、ガーターとミスは0と表示するものとし、ダブルがあった場合はメッセージを表示する。
+\end{itembox}
+\begin{minipage}[b]{.7\textwidth}
+\begin{itembox}[l]{ボウリングのデータ構造}
+{\tt
+(uint thr1, uint thr2)\{9\}
+
+(uint last1, uint last2, uint last3)
+}
+\end{itembox}
+\end{minipage}
+\begin{itembox}[l]{ボウリングの評価基準}
+{\tt
+1 TAB thr1 == 10 TAB ストライクのスコア計算
+
+2 TAB thr1 != 10 \&\& thr1+thr2 == 10 TAB スペアのスコア計算
+
+3 TAB last1 == 10 TAB ストライクの通常加算
+
+3 TAB last1 != 10  \&\& last1+last2 == 10 TAB スペアの通常加算
+
+4 TAB double\_strike(thr1) || all\_strike([last1, last2]) TAB ダブル
+
+4 TAB last\_strike(thr1) == 1 \&\& last1 == 10 TAB 最終Fをまたぐダブル
+}
+\end{itembox}
+
+ストライクとスペアだった場合のスコア計算が正しいかをテストする必要がある（評価基準番号1, 2）。最終フレームではストライク、スペアでも通常の加算になるので、それらのテストも必要である（評価基準番号3）。評価基準番号4はダブルについてのテストである。ダブルがあればtrueを返す関数double\_strike()、 リストがすべて10ならばtrueを返す関数all\_strike()、リストの最後の要素から10が何回連続しているかを返す関数last\_strike()が定義されている。
+\section{システムの評価}
+参考書の例題のテストケースのデータ構造が評価システムに則した形式で記述できるか調査が行われ、実行時に入力のデータ構造が変化する共用体などの問題以外ではデータ構造を記述できることが確認された。
+
+また、評価システムにより、学生がテストケースを作成できるようになるのかを確認するために、プログラミングを学習済みの学生7人がボウリングの課題のテストケースを作成した。その結果最終的に6人の学生がカバレッジ100\%を達成したことが確認された。
+\section{システムの課題}
+関連研究では、教員が問題文を分析した上で、評価基準を記述しているので、システムを運用する上で教員の負担が大きくなってしまうことが考えられる。そこで、教員の負担を減らすために、評価基準を自動で生成する方法を考える。
 \chapter{テストケース評価基準の自動生成}
 \section{背景}
 \chapter{検証}
