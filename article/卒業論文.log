@@ -1,4 +1,4 @@
-This is e-pTeX, Version 3.14159265-p3.8.0-180226-2.6 (utf8.sjis) (TeX Live 2018/W32TeX) (preloaded format=platex 2018.4.9)  22 JAN 2019 19:56
+This is e-pTeX, Version 3.14159265-p3.8.0-180226-2.6 (utf8.sjis) (TeX Live 2018/W32TeX) (preloaded format=platex 2018.4.9)  23 JAN 2019 20:17
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
@@ -301,21 +301,7 @@ LaTeX Font Info:    Font shape `JY1/mc/bx/n' in size <20.74> not available
 (Font)              Font shape `JY1/gt/m/n' tried instead on input line 53.
 LaTeX Font Info:    Font shape `JY1/gt/m/n' will be
 (Font)              scaled to size 19.9311pt on input line 53.
- (./卒業論文.toc
-LaTeX Font Info:    External font `cmex10' loaded for size
-(Font)              <7> on input line 2.
-LaTeX Font Info:    External font `cmex10' loaded for size
-(Font)              <5> on input line 2.
-LaTeX Font Info:    Font shape `JY1/mc/m/n' will be
-(Font)              scaled to size 6.72699pt on input line 2.
-LaTeX Font Info:    Font shape `JY1/mc/m/n' will be
-(Font)              scaled to size 4.805pt on input line 2.
-
-Overfull \hbox (0.35104pt too wide) detected at line 18
-\JY1/gt/m/n/10 参 考 文 献 
- []
-
-)
+ (./卒業論文.toc)
 \tf@toc=\write4
 \openout4 = `卒業論文.toc'.
 
@@ -329,38 +315,65 @@ LaTeX Font Info:    Font shape `JT1/gt/m/n' will be
 (Font)              scaled to size 13.83836pt on input line 62.
 LaTeX Font Info:    Font shape `JY1/gt/m/n' will be
 (Font)              scaled to size 13.83836pt on input line 62.
+LaTeX Font Info:    Font shape `JT1/mc/bx/n' in size <10> not available
+(Font)              Font shape `JT1/gt/m/n' tried instead on input line 65.
+LaTeX Font Info:    Font shape `JT1/gt/m/n' will be
+(Font)              scaled to size 9.60999pt on input line 65.
+LaTeX Font Info:    Font shape `JY1/mc/bx/n' in size <10> not available
+(Font)              Font shape `JY1/gt/m/n' tried instead on input line 65.
+LaTeX Font Info:    Font shape `JY1/gt/m/n' will be
+(Font)              scaled to size 9.60999pt on input line 65.
+
+LaTeX Warning: Citation `a1' on page 1 undefined on input line 65.
+
 [1
 
 
 ]
 第2章
+
+LaTeX Warning: Citation `a1' on page 2 undefined on input line 69.
+
+LaTeX Font Info:    External font `cmex10' loaded for size
+(Font)              <7> on input line 78.
+LaTeX Font Info:    External font `cmex10' loaded for size
+(Font)              <5> on input line 78.
+LaTeX Font Info:    Font shape `JY1/mc/m/n' will be
+(Font)              scaled to size 6.72699pt on input line 78.
+LaTeX Font Info:    Font shape `JY1/mc/m/n' will be
+(Font)              scaled to size 4.805pt on input line 78.
 [2
 
 ]
-LaTeX Font Info:    Try loading font information for OMS+cmtt on input line 124
+LaTeX Font Info:    Try loading font information for OMS+cmtt on input line 122
 .
-LaTeX Font Info:    No file OMScmtt.fd. on input line 124.
+LaTeX Font Info:    No file OMScmtt.fd. on input line 122.
 
 
 LaTeX Font Warning: Font shape `OMS/cmtt/m/n' undefined
 (Font)              using `OMS/cmsy/m/n' instead
-(Font)              for symbol `textbraceleft' on input line 124.
+(Font)              for symbol `textbraceleft' on input line 122.
+
+
+Overfull \hbox (18.49149pt too wide) in paragraph at lines 115--133
+[][] 
+ []
 
 [3]
 Package hyperref Info: bookmark level for unknown lstlisting defaults to 0 on i
-nput line 143.
+nput line 144.
 LaTeX Font Info:    Font shape `JT1/mc/m/n' will be
-(Font)              scaled to size 8.64899pt on input line 143.
+(Font)              scaled to size 8.64899pt on input line 144.
 LaTeX Font Info:    Font shape `JY1/mc/m/n' will be
-(Font)              scaled to size 8.64899pt on input line 143.
-LaTeX Font Info:    Font shape `JT1/gt/m/n' will be
-(Font)              scaled to size 7.68799pt on input line 143.
-LaTeX Font Info:    Font shape `JY1/gt/m/n' will be
-(Font)              scaled to size 7.68799pt on input line 143.
-LaTeX Font Info:    Font shape `JT1/gt/m/n' will be
 (Font)              scaled to size 8.64899pt on input line 144.
+LaTeX Font Info:    Font shape `JT1/gt/m/n' will be
+(Font)              scaled to size 7.68799pt on input line 144.
 LaTeX Font Info:    Font shape `JY1/gt/m/n' will be
-(Font)              scaled to size 8.64899pt on input line 144.
+(Font)              scaled to size 7.68799pt on input line 144.
+LaTeX Font Info:    Font shape `JT1/gt/m/n' will be
+(Font)              scaled to size 8.64899pt on input line 145.
+LaTeX Font Info:    Font shape `JY1/gt/m/n' will be
+(Font)              scaled to size 8.64899pt on input line 145.
  [4] [5]
 第3章
 [6
@@ -376,29 +389,41 @@ LaTeX Font Info:    Font shape `JY1/gt/m/n' will be
 ] [9
 
 ]
-Package atveryend Info: Empty hook `BeforeClearDocument' on input line 200.
+Package atveryend Info: Empty hook `BeforeClearDocument' on input line 201.
  [10
 
 ]
-Package atveryend Info: Empty hook `AfterLastShipout' on input line 200.
+Package atveryend Info: Empty hook `AfterLastShipout' on input line 201.
  (./卒業論文.aux)
-Package atveryend Info: Empty hook `AtVeryEndDocument' on input line 200.
-Package atveryend Info: Executing hook `AtEndAfterFileList' on input line 200.
-Package rerunfilecheck Info: File `卒業論文.out' has not changed.
-(rerunfilecheck)             Checksum: 5F91FA2D58A4D7483BC7A3FBF13546A8;1156.
+Package atveryend Info: Empty hook `AtVeryEndDocument' on input line 201.
+Package atveryend Info: Executing hook `AtEndAfterFileList' on input line 201.
 
+
+Package rerunfilecheck Warning: File `卒業論文.out' has changed.
+(rerunfilecheck)                Rerun to get outlines right
+(rerunfilecheck)                or use package `bookmark'.
+
+Package rerunfilecheck Info: Checksums for `卒業論文.out':
+(rerunfilecheck)             Before: DA069AE278378ED0EA81029A96EDBBEC;458
+(rerunfilecheck)             After:  5F91FA2D58A4D7483BC7A3FBF13546A8;1156.
 
 LaTeX Font Warning: Some font shapes were not available, defaults substituted.
 
-Package atveryend Info: Empty hook `AtVeryVeryEnd' on input line 200.
+
+LaTeX Warning: There were undefined references.
+
+
+LaTeX Warning: Label(s) may have changed. Rerun to get cross-references right.
+
+Package atveryend Info: Empty hook `AtVeryVeryEnd' on input line 201.
  ) 
 Here is how much of TeX's memory you used:
- 6608 strings out of 493281
- 92853 string characters out of 6146980
- 200523 words of memory out of 5000000
- 10522 multiletter control sequences out of 15000+600000
- 14210 words of font info for 69 fonts, out of 8000000 for 9000
+ 6610 strings out of 493281
+ 92880 string characters out of 6146980
+ 199788 words of memory out of 5000000
+ 10523 multiletter control sequences out of 15000+600000
+ 14518 words of font info for 70 fonts, out of 8000000 for 9000
  934 hyphenation exceptions out of 8191
  29i,8n,32p,617b,1220s stack positions out of 5000i,500n,10000p,500000b,80000s
 
-Output written on 卒業論文.dvi (12 pages, 27264 bytes).
+Output written on 卒業論文.dvi (12 pages, 20184 bytes).
