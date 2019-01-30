@@ -1,5 +1,6 @@
-double height, double weight, double bmi
 8から40まで
+5double height, double weight, double bmi,  �, height
+weight
 height <= 0 || weight <= 0
 !(height <= 0 || weight <= 0)
 bmi >= 25
