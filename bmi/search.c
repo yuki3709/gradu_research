@@ -26,7 +26,7 @@ int main(void)
     int varNameEnd;
     int varNameRange;
     int inputNameNum = 0;
-    int ConditonNum = 0;
+    int conditonNum = 0;
     int ampersand = 0;
     int camma;
     int inputNameRange;
@@ -66,7 +66,7 @@ int main(void)
             mainStart = i;
         }
     }
-    for (i = mainStart; i < N; i++)
+    for (i = mainStart + 1; i < N; i++)
     {
         if (strstr(data[i], "{"))
         {
@@ -82,7 +82,7 @@ int main(void)
             break;
         }
     }
-    for (i = mainStart; i < mainEnd; i++)
+    for (i = mainStart + 1; i < mainEnd; i++)
     {
         if (strstr(data[i], "double "))
         {
@@ -94,7 +94,8 @@ int main(void)
                 }
                 if (data[i][j] == ';')
                 {
-                    varNameEnd = j - 1;
+                    varNameEnd = j;
+                    break;
                 }
             }
             varNameRange = varNameEnd - varNameStart;
@@ -104,70 +105,126 @@ int main(void)
         }
         else if (strstr(data[i], "int "))
         {
-            printf("int型");
+            for (j = 0; j < 40; j++)
+            {
+                if (data[i][j] == 't' && data[i][j + 1] == ' ')
+                {
+                    varNameStart = j + 2;
+                }
+                if (data[i][j] == ';')
+                {
+                    varNameEnd = j;
+                    break;
+                }
+            }
+            varNameRange = varNameEnd - varNameStart;
+            strcpy(vars[varNum].type, "int");
+            strncpy(vars[varNum].name, data[i] + varNameStart, varNameRange);
+            varNum++;
         }
         else if (strstr(data[i], "char "))
         {
-            printf("char型");
+            for (j = 0; j < 40; j++)
+            {
+                if (data[i][j] == 'r' && data[i][j + 1] == ' ')
+                {
+                    varNameStart = j + 2;
+                }
+                if (data[i][j] == ';')
+                {
+                    varNameEnd = j;
+                    break;
+                }
+            }
+            varNameRange = varNameEnd - varNameStart;
+            strcpy(vars[varNum].type, "char");
+            strncpy(vars[varNum].name, data[i] + varNameStart, varNameRange);
+            varNum++;
         }
         else if (strstr(data[i], "float "))
         {
-            printf("float型");
+            for (j = 0; j < 40; j++)
+            {
+                if (data[i][j] == 't' && data[i][j + 1] == ' ')
+                {
+                    varNameStart = j + 2;
+                }
+                if (data[i][j] == ';')
+                {
+                    varNameEnd = j;
+                    break;
+                }
+            }
+            varNameRange = varNameEnd - varNameStart;
+            strcpy(vars[varNum].type, "float");
+            strncpy(vars[varNum].name, data[i] + varNameStart, varNameRange);
+            varNum++;
         }
     }
-    printf("%s %s\n", vars[0], vars[1]);
+    for (i = 0; i < varNum; i++)
+    {
+        if (i < varNum - 1)
+        {
+            printf("%s %s, ", vars[i].type, vars[i].name);
+        }
+        else
+        {
+            printf("%s %s\n", vars[i].type, vars[i].name);
+        }
+    }
     printf("%dから%dまで\n", mainStart, mainEnd);
-    for (i = mainStart; i < mainEnd; i++)
-    {
-        if (strstr(data[i], "scanf"))
-        {
-            for (j = 0; data[i][j]; j++)
-            {
-                if (data[i][j] == ',')
-                {
-                    camma = j;
-                }
-                if (data[i][j] == '&')
-                {
-                    ampersand = 1;
-                }
-                if (data[i][j] == ')')
-                {
-                    rightParenthesis = j;
-                }
-            }
-            if (ampersand == 1)
-            {
-                inputNameRange = rightParenthesis - camma - 3;
-                strncpy(inputName[inputNameNum],
-                        data[i] + camma + 3, inputNameRange);
-                inputName[inputNameNum][inputNameRange] = '\0';
-                printf("%s\n", inputName[inputNameNum]);
-                inputNameNum++;
-            }
-            else
-            {
-                inputNameRange = rightParenthesis - camma - 2;
-                strncpy(inputName[inputNameNum],
-                        data[i] + camma + 2, inputNameRange);
-                inputName[inputNameNum][inputNameRange] = '\0';
-                printf("%s\n", inputName[inputNameNum]);
-                inputNameNum++;
-            }
-            ampersand = 0;
-        }
-    }
-    for (i = mainStart; i < mainEnd; i++)
-    {
-        for (j = 0; j < inputNameNum; j++)
-        {
-            if ((strstr(data[i], inputName[j])) && (inputFlag < inputNameNum))
-            {
-                printf("%s", data[i]);
-                inputFlag++;
-            }
-        }
-    }
+    //scanfから入力変数を見つける
+    // for (i = mainStart; i < mainEnd; i++)
+    // {
+    //     if (strstr(data[i], "scanf"))
+    //     {
+    //         for (j = 0; data[i][j]; j++)
+    //         {
+    //             if (data[i][j] == ',')
+    //             {
+    //                 camma = j;
+    //             }
+    //             if (data[i][j] == '&')
+    //             {
+    //                 ampersand = 1;
+    //             }
+    //             if (data[i][j] == ')')
+    //             {
+    //                 rightParenthesis = j;
+    //             }
+    //         }
+    //         if (ampersand == 1)
+    //         {
+    //             inputNameRange = rightParenthesis - camma - 3;
+    //             strncpy(inputName[inputNameNum],
+    //                     data[i] + camma + 3, inputNameRange);
+    //             inputName[inputNameNum][inputNameRange] = '\0';
+    //             printf("%s\n", inputName[inputNameNum]);
+    //             inputNameNum++;
+    //         }
+    //         else
+    //         {
+    //             inputNameRange = rightParenthesis - camma - 2;
+    //             strncpy(inputName[inputNameNum],
+    //                     data[i] + camma + 2, inputNameRange);
+    //             inputName[inputNameNum][inputNameRange] = '\0';
+    //             printf("%s\n", inputName[inputNameNum]);
+    //             inputNameNum++;
+    //         }
+    //         ampersand = 0;
+    //     }
+    // }
+    // for (i = mainStart; i < mainEnd; i++)
+    // {
+    //     for (j = 0; j < inputNameNum; j++)
+    //     {
+    //         if (strstr(data[i], inputName[j]) && inputFlag < inputNameNum)
+    //         {
+    //             printf("%s", data[i]);
+    //             inputFlag++;
+    //         }
+    //     }
+    // }
     for (i = mainStart; i < mainEnd; i++)
     {
         if (strstr(data[i], "if"))
@@ -180,18 +237,18 @@ int main(void)
                     rightParenthesis = j;
             }
             condition_range = rightParenthesis - leftParenthesis - 1;
-            strncpy(conditon[ConditonNum],
+            strncpy(conditon[conditonNum],
                     data[i] + leftParenthesis + 1, condition_range);
-            conditon[ConditonNum][condition_range] = '\0';
-            notCondition[ConditonNum][0] = '!';
-            notCondition[ConditonNum][1] = '(';
-            strncpy(notCondition[ConditonNum] + 2,
-                    conditon[ConditonNum], condition_range);
-            notCondition[ConditonNum][condition_range + 2] = ')';
-            notCondition[ConditonNum][condition_range + 3] = '\0';
-            printf("%s\n", conditon[ConditonNum]);
-            printf("%s\n", notCondition[ConditonNum]);
-            ConditonNum++;
+            conditon[conditonNum][condition_range] = '\0';
+            notCondition[conditonNum][0] = '!';
+            notCondition[conditonNum][1] = '(';
+            strncpy(notCondition[conditonNum] + 2,
+                    conditon[conditonNum], condition_range);
+            notCondition[conditonNum][condition_range + 2] = ')';
+            notCondition[conditonNum][condition_range + 3] = '\0';
+            printf("%s\n", conditon[conditonNum]);
+            printf("%s\n", notCondition[conditonNum]);
+            conditonNum++;
         }
     }
     return 0;
