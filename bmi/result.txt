@@ -1,3 +1,5 @@
+7から32までheight
+weight
 height <= 0 || weight <= 0
 !(height <= 0 || weight <= 0)
 bmi >= 25
