@@ -1,3 +1,4 @@
+
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
@@ -10,17 +11,25 @@ typedef struct Var
     char name[30];
 } Var;
 int loadData(char *filename, char **data);
+int mallocF(char **function);
 void loadVar(char *line, Var *var);
 void loadVars(char **data, int start, int end, Var *vars);
+void loadFunction(char **data, char **function);
 int countMainStartIndex(char **data);
 int countMainEndIndex(char **data, int startIndex);
 int main(void)
 {
     char *filename = "bmi.c";
     char **data = malloc(sizeof(char *) * N);
+    char **function = malloc(sizeof(char *) * N);
     if (loadData(filename, data) == -1)
     {
         free(data);
+        return -1;
+    }
+    if (mallocF(function) == -1)
+    {
+        free(function);
         return -1;
     }
     int mainStart = countMainStartIndex(data);
@@ -29,7 +38,7 @@ int main(void)
 
     Var vars[30];
     loadVars(data, mainStart + 1, mainEnd, vars);
-
+    loadFunction(data, function);
     char inputName[20][30];
     char conditon[20][N];
     char notCondition[20][N];
@@ -105,6 +114,7 @@ int main(void)
         }
     }
     free(data);
+    free(function);
     return 0;
 }
 int loadData(char *filename, char *data[N])
@@ -140,6 +150,14 @@ int loadData(char *filename, char *data[N])
     }
     fclose(fp);
     return 0;
+}
+int mallocF(char *functin[N])
+{
+    char *arr = malloc(sizeof(int) * N * N);
+    for (int i = 0; i < N; i++)
+    {
+        functin[i] = arr + i * N;
+    }
 }
 void loadVar(char *line, Var *var)
 {
@@ -227,7 +245,6 @@ void loadVars(char **data, int start, int end, Var *vars)
             count++;
         }
     }
-    printf("%d", count);
     for (i = 1; i < count - 1; i++)
     {
         if (i < count - 2)
@@ -237,6 +254,43 @@ void loadVars(char **data, int start, int end, Var *vars)
         else
         {
             printf("%s %s\n", vars[i].type, vars[i].name);
+        }
+    }
+}
+void loadFunction(char **data, char **function)
+{
+    int functionNum = 0;
+    int i;
+    int j = 0;
+    int functionFlag = 0;
+    int braceCount = 0;
+    for (i = 0; i < N; i++)
+    {
+        if (data[i][0] != ' ' && data[i][0] != '\t' && data[i][0] != '#' &&
+            !strstr(data[i], "main(") && !strstr(data[i], "struct") &&
+            !strstr(data[i], "typedef"))
+        {
+            functionFlag = 1;
+        }
+        if (functionFlag == 1 && strstr(data[i], "{"))
+        {
+            braceCount++;
+        }
+        if (functionFlag == 1)
+        {
+            strcpy(function[j], data[i]);
+            printf(function[j]);
+        }
+
+        j++;
+        if (functionFlag == 1 && strstr(data[i], "}"))
+        {
+            braceCount--;
+            if (braceCount == 0)
+            {
+                functionFlag = 0;
+                return;
+            }
         }
     }
 }

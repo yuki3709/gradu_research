@@ -1,5 +1,12 @@
 8から40まで
-5double height, double weight, double bmi,  �, height
+double height, double weight, double bmi
+
+/*BMIの定義*/
+double BMI(double height, double weight)
+{
+	return weight / ((height * height) / 10000);
+}
+height
 weight
 height <= 0 || weight <= 0
 !(height <= 0 || weight <= 0)
