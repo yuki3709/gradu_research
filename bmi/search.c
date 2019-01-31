@@ -13,15 +13,32 @@ typedef struct Var
 int loadData(char *filename, char **data);
 int mallocF(char **function);
 void loadVar(char *line, Var *var);
-void loadVars(char **data, int start, int end, Var *vars);
+void loadVars(char **data, int start, int end, Var *vars, int *varsCount);
 void loadFunction(char **data, char **function);
 int countMainStartIndex(char **data);
 int countMainEndIndex(char **data, int startIndex);
 int main(void)
 {
     char *filename = "bmi.c";
+    int i = 0;
+    int j = 0;
+    int inputNameNum = 0;
+    int conditionNum = 0;
+    int ampersand = 0;
+    int camma;
+    int inputNameRange;
+    int inputFlag = 0;
+    int leftParenthesis;
+    int rightParenthesis;
+    int conditionRange;
+    int varsCount = 0;
+    int varsCheck[30];
+    char inputName[20][30];
+    char conditon[20][N];
+    char notCondition[20][N];
     char **data = malloc(sizeof(char *) * N);
     char **function = malloc(sizeof(char *) * N);
+    Var vars[30];
     if (loadData(filename, data) == -1)
     {
         free(data);
@@ -34,26 +51,9 @@ int main(void)
     }
     int mainStart = countMainStartIndex(data);
     int mainEnd = countMainEndIndex(data, mainStart);
-    printf("%dから%dまで\n", mainStart, mainEnd);
-
-    Var vars[30];
-    loadVars(data, mainStart + 1, mainEnd, vars);
+    loadVars(data, mainStart + 1, mainEnd, vars, &varsCount);
     loadFunction(data, function);
-    char inputName[20][30];
-    char conditon[20][N];
-    char notCondition[20][N];
 
-    int i = 0;
-    int j = 0;
-    int inputNameNum = 0;
-    int conditonNum = 0;
-    int ampersand = 0;
-    int camma;
-    int inputNameRange;
-    int inputFlag = 0;
-    int leftParenthesis;
-    int rightParenthesis;
-    int conditionRange;
     for (i = mainStart; i < mainEnd; i++)
     {
         if (!strstr(data[i], "scanf"))
@@ -99,18 +99,32 @@ int main(void)
                 }
             }
             conditionRange = rightParenthesis - leftParenthesis - 1;
-            strncpy(conditon[conditonNum],
+            strncpy(conditon[conditionNum],
                     data[i] + leftParenthesis + 1, conditionRange);
-            conditon[conditonNum][conditionRange] = '\0';
-            notCondition[conditonNum][0] = '!';
-            notCondition[conditonNum][1] = '(';
-            strncpy(notCondition[conditonNum] + 2,
-                    conditon[conditonNum], conditionRange);
-            notCondition[conditonNum][conditionRange + 2] = ')';
-            notCondition[conditonNum][conditionRange + 3] = '\0';
-            printf("%s\n", conditon[conditonNum]);
-            printf("%s\n", notCondition[conditonNum]);
-            conditonNum++;
+            conditon[conditionNum][conditionRange] = '\0';
+            notCondition[conditionNum][0] = '!';
+            notCondition[conditionNum][1] = '(';
+            strncpy(notCondition[conditionNum] + 2,
+                    conditon[conditionNum], conditionRange);
+            notCondition[conditionNum][conditionRange + 2] = ')';
+            notCondition[conditionNum][conditionRange + 3] = '\0';
+            printf("%s\n", conditon[conditionNum]);
+            printf("%s\n", notCondition[conditionNum]);
+            conditionNum++;
+        }
+    }
+    for (i = 0; i < varsCount; i++)
+    {
+        varsCheck[i] = 0;
+        for (j = 0; j < inputNameNum; j++)
+        {
+            if (strcmp(vars[i].name, inputName[j]) == 0)
+            {
+                varsCheck[i]++;
+            }
+        }
+        if (varsCheck[i] == 0)
+        {
         }
     }
     free(data);
@@ -233,7 +247,7 @@ void loadVar(char *line, Var *var)
         strncpy(var->name, line + varNameStart, varNameRange);
     }
 }
-void loadVars(char **data, int start, int end, Var *vars)
+void loadVars(char **data, int start, int end, Var *vars, int *varsCount)
 {
     int i;
     int count = 0;
@@ -243,11 +257,12 @@ void loadVars(char **data, int start, int end, Var *vars)
         if (vars[count].name[0] != '\0')
         {
             count++;
+            *varsCount = count;
         }
     }
-    for (i = 1; i < count - 1; i++)
+    for (i = 0; i < count; i++)
     {
-        if (i < count - 2)
+        if (i < count - 1)
         {
             printf("%s %s, ", vars[i].type, vars[i].name);
         }
