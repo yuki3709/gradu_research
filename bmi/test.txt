@@ -1,6 +1,7 @@
 double height, double weight, double bmi
 
 /*BMIの定義*/
+BMI
 double BMI(double height, double weight)
 {
 	return weight / ((height * height) / 10000);
@@ -13,3 +14,4 @@ bmi >= 25
 !(bmi >= 25)
 bmi < 18.5
 !(bmi < 18.5)
+	bmi = BMI(height, weight);
