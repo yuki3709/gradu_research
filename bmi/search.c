@@ -33,12 +33,16 @@ int main(void)
     int conditionRange;
     int varsCount = 0;
     int varsCheck[30];
-    char inputName[20][30];
+    int noInputVarsNum = 0;
+    int unknownVarsCount = 0;
+    int *unknownVarsNum = (int *)malloc(sizeof(int) * 10);
+    char noInputVars[10][30];
+    char inputName[10][30];
     char conditon[20][N];
     char notCondition[20][N];
     char **data = malloc(sizeof(char *) * N);
     char **function = malloc(sizeof(char *) * N);
-    Var vars[30];
+    Var vars[20];
     if (loadData(filename, data) == -1)
     {
         free(data);
@@ -125,10 +129,37 @@ int main(void)
         }
         if (varsCheck[i] == 0)
         {
+            strcpy(noInputVars[noInputVarsNum], vars[i].name);
+            noInputVarsNum++;
+        }
+    }
+    for (i = 0; i < conditionNum; i++)
+    {
+        for (j = 0; j < noInputVarsNum; j++)
+        {
+            if (strstr(conditon[i], noInputVars[j]))
+            {
+                if (unknownVarsCount != 0)
+                {
+                    unknownVarsCount++;
+                }
+                unknownVarsNum[unknownVarsCount] = j;
+            }
+        }
+    }
+    for (i = mainStart; i < mainEnd; i++)
+    {
+        for (j = 0; j < unknownVarsCount + 1; j++)
+        {
+            if (strstr(data[i], noInputVars[unknownVarsNum[j]]))
+            {
+                printf(data[i]);
+            }
         }
     }
     free(data);
     free(function);
+    free(unknownVarsNum);
     return 0;
 }
 int loadData(char *filename, char *data[N])
