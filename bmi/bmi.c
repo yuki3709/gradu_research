@@ -1,6 +1,5 @@
 #define _CRT_SECURE_NO_WARNINGS
 #include <stdio.h>
-
 /*BMIの定義*/
 double BMI(double height, double weight)
 {
