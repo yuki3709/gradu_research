@@ -14,7 +14,7 @@ int loadData(char *filename, char **data);
 int mallocF(char **function);
 void loadVar(char *line, Var *var);
 void loadVars(char **data, int start, int end, Var *vars, int *varsCount);
-void loadFunction(char **data, char **function);
+void loadFunction(char **data, char **function, char *functionName);
 int countMainStartIndex(char **data);
 int countMainEndIndex(char **data, int startIndex);
 int main(void)
@@ -42,6 +42,7 @@ int main(void)
     char notCondition[20][N];
     char **data = malloc(sizeof(char *) * N);
     char **function = malloc(sizeof(char *) * N);
+    char *functionName = (char *)malloc(sizeof(char) * 20);
     Var vars[20];
     if (loadData(filename, data) == -1)
     {
@@ -56,7 +57,7 @@ int main(void)
     int mainStart = countMainStartIndex(data);
     int mainEnd = countMainEndIndex(data, mainStart);
     loadVars(data, mainStart + 1, mainEnd, vars, &varsCount);
-    loadFunction(data, function);
+    loadFunction(data, function, functionName);
 
     for (i = mainStart; i < mainEnd; i++)
     {
@@ -160,6 +161,7 @@ int main(void)
     free(data);
     free(function);
     free(unknownVarsNum);
+    free(functionName);
     return 0;
 }
 int loadData(char *filename, char *data[N])
@@ -303,20 +305,41 @@ void loadVars(char **data, int start, int end, Var *vars, int *varsCount)
         }
     }
 }
-void loadFunction(char **data, char **function)
+void loadFunction(char **data, char **function, char *functionName)
 {
     int functionNum = 0;
     int i;
-    int j = 0;
+    int j;
+    int k = 0;
     int functionFlag = 0;
     int braceCount = 0;
+    int nameFlag;
+    int nameStart;
+    int nameRange;
     for (i = 0; i < N; i++)
     {
         if (data[i][0] != ' ' && data[i][0] != '\t' && data[i][0] != '#' &&
-            !strstr(data[i], "main(") && !strstr(data[i], "struct") &&
+            data[i][0] != '/' && !strstr(data[i], "main(") && !strstr(data[i], "struct") &&
             !strstr(data[i], "typedef"))
         {
+            nameFlag = 0;
             functionFlag = 1;
+            for (j = 0; j < N; j++)
+            {
+                if (data[i][j] == ' ' && nameFlag == 0)
+                {
+                    nameStart = j + 1;
+                    nameFlag++;
+                }
+                if (data[i][j] == '(' && nameFlag == 1)
+                {
+                    nameRange = j - nameStart;
+                    strncpy(functionName, data[i] + nameStart, nameRange);
+                    printf("%s\n", functionName);
+                    nameFlag++;
+                    break;
+                }
+            }
         }
         if (functionFlag == 1 && strstr(data[i], "{"))
         {
@@ -324,11 +347,13 @@ void loadFunction(char **data, char **function)
         }
         if (functionFlag == 1)
         {
-            strcpy(function[j], data[i]);
-            printf(function[j]);
+            strcpy(function[k], data[i]);
+            printf(function[k]);
+            // printf(functionName);
         }
 
-        j++;
+        k++;
+
         if (functionFlag == 1 && strstr(data[i], "}"))
         {
             braceCount--;
