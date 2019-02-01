@@ -12,6 +12,7 @@ typedef struct Var
 } Var;
 int loadData(char *filename, char **data);
 int mallocF(char **function);
+int mallocCF(char **callFunction);
 void loadVar(char *line, Var *var);
 void loadVars(char **data, int start, int end, Var *vars, int *varsCount);
 void loadFunction(char **data, char **function, char *functionName);
@@ -34,6 +35,7 @@ int main(void)
     int varsCount = 0;
     int varsCheck[30];
     int noInputVarsNum = 0;
+    int callFunctionNum = 0;
     int unknownVarsCount = 0;
     int *unknownVarsNum = (int *)malloc(sizeof(int) * 10);
     char noInputVars[10][30];
@@ -43,6 +45,7 @@ int main(void)
     char **data = malloc(sizeof(char *) * N);
     char **function = malloc(sizeof(char *) * N);
     char *functionName = (char *)malloc(sizeof(char) * 20);
+    char **callFunction = malloc(sizeof(char *) * N);
     Var vars[20];
     if (loadData(filename, data) == -1)
     {
@@ -52,6 +55,11 @@ int main(void)
     if (mallocF(function) == -1)
     {
         free(function);
+        return -1;
+    }
+    if (mallocCF(callFunction) == -1)
+    {
+        free(callFunction);
         return -1;
     }
     int mainStart = countMainStartIndex(data);
@@ -152,14 +160,21 @@ int main(void)
     {
         for (j = 0; j < unknownVarsCount + 1; j++)
         {
-            if (strstr(data[i], noInputVars[unknownVarsNum[j]]))
+            if (strstr(data[i], noInputVars[unknownVarsNum[j]]) &&
+                strstr(data[i], functionName) && !strstr(data[i], "printf"))
             {
-                printf(data[i]);
+                strcpy(callFunction[callFunctionNum], data[i]);
+                callFunctionNum++;
             }
         }
     }
+    for (i = 0; i < callFunctionNum; i++)
+    {
+        printf(callFunction[i]);
+    }
     free(data);
     free(function);
+    free(callFunction);
     free(unknownVarsNum);
     free(functionName);
     return 0;
@@ -198,12 +213,20 @@ int loadData(char *filename, char *data[N])
     fclose(fp);
     return 0;
 }
-int mallocF(char *functin[N])
+int mallocF(char *function[N])
 {
     char *arr = malloc(sizeof(int) * N * N);
     for (int i = 0; i < N; i++)
     {
-        functin[i] = arr + i * N;
+        function[i] = arr + i * N;
+    }
+}
+int mallocCF(char *callFunction[N])
+{
+    char *arr = malloc(sizeof(int) * N * N);
+    for (int i = 0; i < N; i++)
+    {
+        callFunction[i] = arr + i * N;
     }
 }
 void loadVar(char *line, Var *var)
@@ -349,7 +372,6 @@ void loadFunction(char **data, char **function, char *functionName)
         {
             strcpy(function[k], data[i]);
             printf(function[k]);
-            // printf(functionName);
         }
 
         k++;
