@@ -15,7 +15,7 @@ int mallocF(char **function);
 int mallocCF(char **callFunction);
 void loadVar(char *line, Var *var);
 void loadVars(char **data, int start, int end, Var *vars, int *varsCount);
-void loadFunction(char **data, char **function, char *functionName);
+void loadFunction(char **data, char **function, char *functionName, int *functionCount);
 int countMainStartIndex(char **data);
 int countMainEndIndex(char **data, int startIndex);
 int main(void)
@@ -32,6 +32,7 @@ int main(void)
     int leftParenthesis;
     int rightParenthesis;
     int conditionRange;
+    int functionCount = 0;
     int varsCount = 0;
     int varsCheck[30];
     int noInputVarsNum = 0;
@@ -65,7 +66,7 @@ int main(void)
     int mainStart = countMainStartIndex(data);
     int mainEnd = countMainEndIndex(data, mainStart);
     loadVars(data, mainStart + 1, mainEnd, vars, &varsCount);
-    loadFunction(data, function, functionName);
+    loadFunction(data, function, functionName, &functionCount);
 
     for (i = mainStart; i < mainEnd; i++)
     {
@@ -156,21 +157,25 @@ int main(void)
             }
         }
     }
-    for (i = mainStart; i < mainEnd; i++)
+    if (functionCount != 0)
     {
-        for (j = 0; j < unknownVarsCount + 1; j++)
+        for (i = mainStart; i < mainEnd; i++)
         {
-            if (strstr(data[i], noInputVars[unknownVarsNum[j]]) &&
-                strstr(data[i], functionName) && !strstr(data[i], "printf"))
+            for (j = 0; j < unknownVarsCount + 1; j++)
             {
-                strcpy(callFunction[callFunctionNum], data[i]);
-                callFunctionNum++;
+                if (strstr(data[i], noInputVars[unknownVarsNum[j]]) &&
+                    strstr(data[i], functionName) && !strstr(data[i], "printf"))
+                {
+                    strcpy(callFunction[callFunctionNum], data[i]);
+                    callFunctionNum++;
+                }
             }
         }
-    }
-    for (i = 0; i < callFunctionNum; i++)
-    {
-        printf(callFunction[i]);
+        for (i = 0; i < callFunctionNum; i++)
+        {
+            printf("a");
+            printf("%s", callFunction[i]);
+        }
     }
     free(data);
     free(function);
@@ -328,7 +333,7 @@ void loadVars(char **data, int start, int end, Var *vars, int *varsCount)
         }
     }
 }
-void loadFunction(char **data, char **function, char *functionName)
+void loadFunction(char **data, char **function, char *functionName, int *functionCount)
 {
     int functionNum = 0;
     int i;
@@ -341,9 +346,24 @@ void loadFunction(char **data, char **function, char *functionName)
     int nameRange;
     for (i = 0; i < N; i++)
     {
-        if (data[i][0] != ' ' && data[i][0] != '\t' && data[i][0] != '#' &&
-            data[i][0] != '/' && !strstr(data[i], "main(") && !strstr(data[i], "struct") &&
-            !strstr(data[i], "typedef"))
+        if (data[i][0] != ' ' && data[i][0] != '\t' && data[i][0] != '\v' && data[i][0] != '\f' &&
+            data[i][0] != '\r' && data[i][0] != '{' && data[i][0] != '}' && data[i][0] != '\0' &&
+            data[i][0] != '#' && data[i][0] != '\n' && data[i][0] != '/' && !strstr(data[i], "main(") &&
+            !strstr(data[i], "struct") && !strstr(data[i], "typedef"))
+        {
+            *functionCount++;
+        }
+    }
+    if (*functionCount == 0)
+    {
+        return;
+    }
+    for (i = 0; i < N; i++)
+    {
+        if (data[i][0] != ' ' && data[i][0] != '\t' && data[i][0] != '\v' && data[i][0] != '\f' &&
+            data[i][0] != '\r' && data[i][0] != '{' && data[i][0] != '}' && data[i][0] != '\0' &&
+            data[i][0] != '#' && data[i][0] != '\n' && data[i][0] != '/' && !strstr(data[i], "main(") &&
+            !strstr(data[i], "struct") && !strstr(data[i], "typedef"))
         {
             nameFlag = 0;
             functionFlag = 1;
@@ -371,7 +391,7 @@ void loadFunction(char **data, char **function, char *functionName)
         if (functionFlag == 1)
         {
             strcpy(function[k], data[i]);
-            printf(function[k]);
+            printf("%s", function[k]);
         }
 
         k++;
