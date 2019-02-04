@@ -161,33 +161,29 @@ int main(void)
         if (strcmp(input[i].type, "int") || strcmp(input[i].type, "double") ||
             strcmp(input[i].type, "float"))
         {
-            strcpy(condition[conditionNum], input[i].name);
-            strcat(condition[conditionNum], defaultCondition1);
-            notCondition[conditionNum][0] = '!';
-            notCondition[conditionNum][1] = '(';
-            strcat(notCondition[conditionNum], condition[conditionNum]);
-            j = strlen(notCondition[conditionNum]);
-            notCondition[conditionNum][j] = ')';
-            notCondition[conditionNum][j + 1] = '\0';
-            conditionNum++;
-            strcpy(condition[conditionNum], input[i].name);
-            strcat(condition[conditionNum], defaultCondition2);
-            notCondition[conditionNum][0] = '!';
-            notCondition[conditionNum][1] = '(';
-            strcat(notCondition[conditionNum], condition[conditionNum]);
-            j = strlen(notCondition[conditionNum]);
-            notCondition[conditionNum][j] = ')';
-            notCondition[conditionNum][j + 1] = '\0';
-            conditionNum++;
-            strcpy(condition[conditionNum], input[i].name);
-            strcat(condition[conditionNum], defaultCondition3);
-            notCondition[conditionNum][0] = '!';
-            notCondition[conditionNum][1] = '(';
-            strcat(notCondition[conditionNum], condition[conditionNum]);
-            j = strlen(notCondition[conditionNum]);
-            notCondition[conditionNum][j] = ')';
-            notCondition[conditionNum][j + 1] = '\0';
-            conditionNum++;
+            for (int num = 0; num < 3; num++)
+            {
+                strcpy(condition[conditionNum], input[i].name);
+                if (num == 0)
+                {
+                    strcat(condition[conditionNum], defaultCondition1);
+                }
+                else if (num == 1)
+                {
+                    strcat(condition[conditionNum], defaultCondition2);
+                }
+                else
+                {
+                    strcat(condition[conditionNum], defaultCondition3);
+                }
+                notCondition[conditionNum][0] = '!';
+                notCondition[conditionNum][1] = '(';
+                strcat(notCondition[conditionNum], condition[conditionNum]);
+                j = strlen(notCondition[conditionNum]);
+                notCondition[conditionNum][j] = ')';
+                notCondition[conditionNum][j + 1] = '\0';
+                conditionNum++;
+            }
         }
     }
     for (i = 0; i < N; i++)
