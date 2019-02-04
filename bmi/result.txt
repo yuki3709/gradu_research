@@ -1,10 +1,29 @@
-double height, double weight, double bmi
+
+入力のデータ構造
 (double height double weight)
-a0b-13436c-13432BMI
+
+関数
 double BMI(double height, double weight)
 {
 	return weight / ((height * height) / 10000);
 }
+
+関数呼び出し
+bmi = BMI(height, weight);
+
+テストケース評価基準
+height > 0
+!(height > 0)
+height == 0
+!(height == 0)
+height < 0
+!(height < 0)
+weight > 0
+!(weight > 0)
+weight == 0
+!(weight == 0)
+weight < 0
+!(weight < 0)
 height <= 0 || weight <= 0
 !(height <= 0 || weight <= 0)
 bmi >= 25
