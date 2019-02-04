@@ -48,6 +48,9 @@ int main(void)
     int *unknownVarsNum = (int *)malloc(sizeof(int) * 10);
     char noInputVars[10][30];
     char inputName[10][30];
+    char defaultCondition1[] = " > 0";
+    char defaultCondition2[] = " == 0";
+    char defaultCondition3[] = " < 0";
     char *inputFileName = (char *)malloc(sizeof(int) * 20);
     char **condition = malloc(sizeof(char *) * N);
     char **notCondition = malloc(sizeof(char *) * N);
@@ -153,7 +156,37 @@ int main(void)
         }
     }
     loadFunction(data, function, functionName, &functionCount);
-    for (i = mainStart; i < mainEnd; i++)
+    for (i = 0; i < inputNameNum; i++)
+    {
+        if (strcmp(input[i].type, "int") || strcmp(input[i].type, "double") ||
+            strcmp(input[i].type, "float"))
+        {
+            for (int num = 0; num < 3; num++)
+            {
+                strcpy(condition[conditionNum], input[i].name);
+                if (num == 0)
+                {
+                    strcat(condition[conditionNum], defaultCondition1);
+                }
+                else if (num == 1)
+                {
+                    strcat(condition[conditionNum], defaultCondition2);
+                }
+                else
+                {
+                    strcat(condition[conditionNum], defaultCondition3);
+                }
+                notCondition[conditionNum][0] = '!';
+                notCondition[conditionNum][1] = '(';
+                strcat(notCondition[conditionNum], condition[conditionNum]);
+                j = strlen(notCondition[conditionNum]);
+                notCondition[conditionNum][j] = ')';
+                notCondition[conditionNum][j + 1] = '\0';
+                conditionNum++;
+            }
+        }
+    }
+    for (i = 0; i < N; i++)
     {
         if (strstr(data[i], "if"))
         {
