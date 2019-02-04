@@ -30,7 +30,6 @@ int main(void)
     char *filename = "bmi.c";
     int i;
     int j;
-    int k;
     int inputNameNum = 0;
     int conditionNum = 0;
     int ampersand = 0;
