@@ -1,17 +1,13 @@
 double height, double weight, double bmi
-
-/*BMIの定義*/
-BMI
+(double height double weight)
+a0b-13436c-13432BMI
 double BMI(double height, double weight)
 {
 	return weight / ((height * height) / 10000);
 }
-height
-weight
 height <= 0 || weight <= 0
 !(height <= 0 || weight <= 0)
 bmi >= 25
 !(bmi >= 25)
 bmi < 18.5
 !(bmi < 18.5)
-	bmi = BMI(height, weight);

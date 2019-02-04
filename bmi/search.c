@@ -10,7 +10,14 @@ typedef struct Var
     char type[10];
     char name[30];
 } Var;
+typedef struct Input
+{
+    char type[10];
+    char name[30];
+} Input;
 int loadData(char *filename, char **data);
+int mallocCondition(char **condition);
+int mallocNotCondition(char **notCondition);
 int mallocF(char **function);
 int mallocCF(char **callFunction);
 void loadVar(char *line, Var *var);
@@ -21,14 +28,16 @@ int countMainEndIndex(char **data, int startIndex);
 int main(void)
 {
     char *filename = "bmi.c";
-    int i = 0;
-    int j = 0;
+    int i;
+    int j;
+    int k;
     int inputNameNum = 0;
     int conditionNum = 0;
     int ampersand = 0;
     int camma;
     int inputNameRange;
     int inputFlag = 0;
+    int parenthesisCount;
     int leftParenthesis;
     int rightParenthesis;
     int conditionRange;
@@ -41,13 +50,14 @@ int main(void)
     int *unknownVarsNum = (int *)malloc(sizeof(int) * 10);
     char noInputVars[10][30];
     char inputName[10][30];
-    char conditon[20][N];
-    char notCondition[20][N];
+    char **condition = malloc(sizeof(char *) * N);
+    char **notCondition = malloc(sizeof(char *) * N);
     char **data = malloc(sizeof(char *) * N);
     char **function = malloc(sizeof(char *) * N);
     char *functionName = (char *)malloc(sizeof(char) * 20);
     char **callFunction = malloc(sizeof(char *) * N);
     Var vars[20];
+    Input input[10];
     if (loadData(filename, data) == -1)
     {
         free(data);
@@ -63,10 +73,19 @@ int main(void)
         free(callFunction);
         return -1;
     }
+    if (mallocCondition(condition) == -1)
+    {
+        free(condition);
+        return -1;
+    }
+    if (mallocNotCondition(notCondition) == -1)
+    {
+        free(notCondition);
+        return -1;
+    }
     int mainStart = countMainStartIndex(data);
     int mainEnd = countMainEndIndex(data, mainStart);
     loadVars(data, mainStart + 1, mainEnd, vars, &varsCount);
-    loadFunction(data, function, functionName, &functionCount);
 
     for (i = mainStart; i < mainEnd; i++)
     {
@@ -93,39 +112,8 @@ int main(void)
         inputNameRange = rightParenthesis - camma - 2 - ampersand;
         strncpy(inputName[inputNameNum], data[i] + camma + 2 + ampersand, inputNameRange);
         inputName[inputNameNum][inputNameRange] = '\0';
-        printf("%s\n", inputName[inputNameNum]);
         inputNameNum++;
         ampersand = 0;
-    }
-    for (i = mainStart; i < mainEnd; i++)
-    {
-        if (strstr(data[i], "if"))
-        {
-            for (j = 0; data[i][j]; j++)
-            {
-                if (data[i][j] == '(')
-                {
-                    leftParenthesis = j;
-                }
-                if (data[i][j] == ')')
-                {
-                    rightParenthesis = j;
-                }
-            }
-            conditionRange = rightParenthesis - leftParenthesis - 1;
-            strncpy(conditon[conditionNum],
-                    data[i] + leftParenthesis + 1, conditionRange);
-            conditon[conditionNum][conditionRange] = '\0';
-            notCondition[conditionNum][0] = '!';
-            notCondition[conditionNum][1] = '(';
-            strncpy(notCondition[conditionNum] + 2,
-                    conditon[conditionNum], conditionRange);
-            notCondition[conditionNum][conditionRange + 2] = ')';
-            notCondition[conditionNum][conditionRange + 3] = '\0';
-            printf("%s\n", conditon[conditionNum]);
-            printf("%s\n", notCondition[conditionNum]);
-            conditionNum++;
-        }
     }
     for (i = 0; i < varsCount; i++)
     {
@@ -134,6 +122,26 @@ int main(void)
         {
             if (strcmp(vars[i].name, inputName[j]) == 0)
             {
+                strcpy(input[j].type, vars[i].type);
+                strcpy(input[j].name, vars[i].name);
+                if (inputNameNum == 1)
+                {
+                    printf("\n入力のデータ構造\n");
+                    printf("(%s %s)", input[j].type, input[j].name);
+                }
+                else if (j == 0)
+                {
+                    printf("\n入力のデータ構造\n");
+                    printf("(%s %s ", input[j].type, input[j].name);
+                }
+                else if (j = inputNameNum - 1)
+                {
+                    printf("%s %s)\n", input[j].type, input[j].name);
+                }
+                else
+                {
+                    printf("%s %s", input[j].type, input[j].name);
+                }
                 varsCheck[i]++;
             }
         }
@@ -143,11 +151,48 @@ int main(void)
             noInputVarsNum++;
         }
     }
+    loadFunction(data, function, functionName, &functionCount);
+    for (i = mainStart; i < mainEnd; i++)
+    {
+        if (strstr(data[i], "if"))
+        {
+            for (j = 0; data[i][j]; j++)
+            {
+                if (data[i][j] == '(')
+                {
+                    if (parenthesisCount == 0)
+                    {
+                        leftParenthesis = j;
+                    }
+                    parenthesisCount++;
+                }
+                if (data[i][j] == ')')
+                {
+                    parenthesisCount--;
+                    if (parenthesisCount == 0)
+                    {
+                        rightParenthesis = j;
+                    }
+                }
+            }
+            conditionRange = rightParenthesis - leftParenthesis - 1;
+            strncpy(condition[conditionNum],
+                    data[i] + leftParenthesis + 1, conditionRange);
+            condition[conditionNum][conditionRange] = '\0';
+            notCondition[conditionNum][0] = '!';
+            notCondition[conditionNum][1] = '(';
+            strncpy(notCondition[conditionNum] + 2,
+                    condition[conditionNum], conditionRange);
+            notCondition[conditionNum][conditionRange + 2] = ')';
+            notCondition[conditionNum][conditionRange + 3] = '\0';
+            conditionNum++;
+        }
+    }
     for (i = 0; i < conditionNum; i++)
     {
         for (j = 0; j < noInputVarsNum; j++)
         {
-            if (strstr(conditon[i], noInputVars[j]))
+            if (strstr(condition[i], noInputVars[j]))
             {
                 if (unknownVarsCount != 0)
                 {
@@ -166,18 +211,48 @@ int main(void)
                 if (strstr(data[i], noInputVars[unknownVarsNum[j]]) &&
                     strstr(data[i], functionName) && !strstr(data[i], "printf"))
                 {
-                    strcpy(callFunction[callFunctionNum], data[i]);
+                    if (callFunction[callFunctionNum][0] == '\0')
+                    {
+                        strcpy(callFunction[callFunctionNum], data[i] + 1);
+                    }
+                    else
+                    {
+                        strcpy(callFunction[callFunctionNum], data[i]);
+                    }
                     callFunctionNum++;
                 }
             }
         }
         for (i = 0; i < callFunctionNum; i++)
         {
-            printf("a");
+            if (i == 0)
+            {
+                printf("\n関数呼び出し\n");
+            }
+            // k = 0;
+            // for (j = 0; callFunction[i][j] != '\0'; j++)
+            // {
+            //     if (callFunction[i][j] != '\t')
+            //     {
+            //         callFunction[i][k] = callFunction[i][j];
+            //         k++;
+            //     }
+            // }
             printf("%s", callFunction[i]);
         }
     }
+    for (i = 0; i < conditionNum; i++)
+    {
+        if (i == 0)
+        {
+            printf("\nテストケース評価基準\n");
+        }
+        printf("%s\n", condition[i]);
+        printf("%s\n", notCondition[i]);
+    }
     free(data);
+    free(condition);
+    free(notCondition);
     free(function);
     free(callFunction);
     free(unknownVarsNum);
@@ -232,6 +307,22 @@ int mallocCF(char *callFunction[N])
     for (int i = 0; i < N; i++)
     {
         callFunction[i] = arr + i * N;
+    }
+}
+int mallocCondition(char *condition[N])
+{
+    char *arr = malloc(sizeof(int) * N * N);
+    for (int i = 0; i < N; i++)
+    {
+        condition[i] = arr + i * N;
+    }
+}
+int mallocNotCondition(char *notCondition[N])
+{
+    char *arr = malloc(sizeof(int) * N * N);
+    for (int i = 0; i < N; i++)
+    {
+        notCondition[i] = arr + i * N;
     }
 }
 void loadVar(char *line, Var *var)
@@ -321,17 +412,17 @@ void loadVars(char **data, int start, int end, Var *vars, int *varsCount)
             *varsCount = count;
         }
     }
-    for (i = 0; i < count; i++)
-    {
-        if (i < count - 1)
-        {
-            printf("%s %s, ", vars[i].type, vars[i].name);
-        }
-        else
-        {
-            printf("%s %s\n", vars[i].type, vars[i].name);
-        }
-    }
+    // for (i = 0; i < count; i++)
+    // {
+    //     if (i < count - 1)
+    //     {
+    //         printf("%s %s, ", vars[i].type, vars[i].name);
+    //     }
+    //     else
+    //     {
+    //         printf("%s %s\n", vars[i].type, vars[i].name);
+    //     }
+    // }
 }
 void loadFunction(char **data, char **function, char *functionName, int *functionCount)
 {
@@ -351,7 +442,7 @@ void loadFunction(char **data, char **function, char *functionName, int *functio
             data[i][0] != '#' && data[i][0] != '\n' && data[i][0] != '/' && !strstr(data[i], "main(") &&
             !strstr(data[i], "struct") && !strstr(data[i], "typedef"))
         {
-            *functionCount++;
+            *functionCount += 1;
         }
     }
     if (*functionCount == 0)
@@ -378,7 +469,7 @@ void loadFunction(char **data, char **function, char *functionName, int *functio
                 {
                     nameRange = j - nameStart;
                     strncpy(functionName, data[i] + nameStart, nameRange);
-                    printf("%s\n", functionName);
+                    // printf("%s\n", functionName);
                     nameFlag++;
                     break;
                 }
@@ -390,11 +481,14 @@ void loadFunction(char **data, char **function, char *functionName, int *functio
         }
         if (functionFlag == 1)
         {
+            if (k == 0)
+            {
+                printf("\n関数\n");
+            }
             strcpy(function[k], data[i]);
             printf("%s", function[k]);
+            k++;
         }
-
-        k++;
 
         if (functionFlag == 1 && strstr(data[i], "}"))
         {
