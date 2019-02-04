@@ -27,7 +27,8 @@ int countMainStartIndex(char **data);
 int countMainEndIndex(char **data, int startIndex);
 int main(void)
 {
-    char *filename = "bmi.c";
+    Var vars[20];
+    Input input[10];
     int i;
     int j;
     int inputNameNum = 0;
@@ -55,8 +56,10 @@ int main(void)
     char **function = malloc(sizeof(char *) * N);
     char *functionName = (char *)malloc(sizeof(char) * 20);
     char **callFunction = malloc(sizeof(char *) * N);
-    Var vars[20];
-    Input input[10];
+    char inputFileName[N];
+    char *filename;
+    scanf("%s", &inputFileName);
+    filename = inputFileName;
     if (loadData(filename, data) == -1)
     {
         free(data);
