@@ -364,7 +364,7 @@ void loadVar(char *line, Var *var)
             {
                 varNameStart = i + 2;
             }
-            if (line[i] == ';')
+            if (line[i] == ';' || line[i] == ' ' && line[i + 1] == '=')
             {
                 varNameRange = i - varNameStart;
                 break;
@@ -381,7 +381,7 @@ void loadVar(char *line, Var *var)
             {
                 varNameStart = i + 2;
             }
-            if (line[i] == ';')
+            if (line[i] == ';' || line[i] == ' ' && line[i + 1] == '=')
             {
                 varNameRange = i - varNameStart;
                 break;
@@ -398,7 +398,7 @@ void loadVar(char *line, Var *var)
             {
                 varNameStart = i + 2;
             }
-            if (line[i] == ';')
+            if (line[i] == ';' || line[i] == ' ' && line[i + 1] == '=')
             {
                 varNameRange = i - varNameStart;
                 break;
@@ -415,7 +415,7 @@ void loadVar(char *line, Var *var)
             {
                 varNameStart = i + 2;
             }
-            if (line[i] == ';')
+            if (line[i] == ';' || line[i] == ' ' && line[i + 1] == '=')
             {
                 varNameRange = i - varNameStart;
                 break;
