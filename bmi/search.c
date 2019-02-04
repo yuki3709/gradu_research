@@ -229,15 +229,6 @@ int main(void)
             {
                 printf("\n関数呼び出し\n");
             }
-            // k = 0;
-            // for (j = 0; callFunction[i][j] != '\0'; j++)
-            // {
-            //     if (callFunction[i][j] != '\t')
-            //     {
-            //         callFunction[i][k] = callFunction[i][j];
-            //         k++;
-            //     }
-            // }
             printf("%s", callFunction[i]);
         }
     }
@@ -469,7 +460,6 @@ void loadFunction(char **data, char **function, char *functionName, int *functio
                 {
                     nameRange = j - nameStart;
                     strncpy(functionName, data[i] + nameStart, nameRange);
-                    // printf("%s\n", functionName);
                     nameFlag++;
                     break;
                 }
