@@ -1,4 +1,3 @@
-
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
@@ -27,7 +26,7 @@ int countMainStartIndex(char **data);
 int countMainEndIndex(char **data, int startIndex);
 int main(void)
 {
-    char *filename = "bmi.c";
+    char *filename;
     int i;
     int j;
     int inputNameNum = 0;
@@ -49,12 +48,15 @@ int main(void)
     int *unknownVarsNum = (int *)malloc(sizeof(int) * 10);
     char noInputVars[10][30];
     char inputName[10][30];
+    char *inputFileName = (char *)malloc(sizeof(int) * 20);
     char **condition = malloc(sizeof(char *) * N);
     char **notCondition = malloc(sizeof(char *) * N);
     char **data = malloc(sizeof(char *) * N);
     char **function = malloc(sizeof(char *) * N);
     char *functionName = (char *)malloc(sizeof(char) * 20);
     char **callFunction = malloc(sizeof(char *) * N);
+    scanf("%s", inputFileName);
+    filename = inputFileName;
     Var vars[20];
     Input input[10];
     if (loadData(filename, data) == -1)
@@ -247,6 +249,7 @@ int main(void)
     free(callFunction);
     free(unknownVarsNum);
     free(functionName);
+    free(inputFileName);
     return 0;
 }
 int loadData(char *filename, char *data[N])
