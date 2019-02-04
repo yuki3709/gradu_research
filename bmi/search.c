@@ -435,6 +435,10 @@ void loadFunction(char **data, char **function, char *functionName, int *functio
             data[i][0] != '#' && data[i][0] != '\n' && data[i][0] != '/' && !strstr(data[i], "main(") &&
             !strstr(data[i], "struct") && !strstr(data[i], "typedef"))
         {
+            if (data[i + 1][0] != '{')
+            {
+                continue;
+            }
             *functionCount += 1;
         }
     }
@@ -449,6 +453,10 @@ void loadFunction(char **data, char **function, char *functionName, int *functio
             data[i][0] != '#' && data[i][0] != '\n' && data[i][0] != '/' && !strstr(data[i], "main(") &&
             !strstr(data[i], "struct") && !strstr(data[i], "typedef"))
         {
+            if (data[i + 1][0] != '{')
+            {
+                continue;
+            }
             nameFlag = 0;
             functionFlag = 1;
             for (j = 0; j < N; j++)
