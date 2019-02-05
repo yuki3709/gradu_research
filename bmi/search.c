@@ -39,6 +39,7 @@ int main(void)
     int leftParenthesis;
     int rightParenthesis;
     int conditionRange;
+    int defaultCondition;
     int functionCount = 0;
     int varsCount = 0;
     int varsCheck[30];
@@ -176,12 +177,9 @@ int main(void)
                 {
                     strcat(condition[conditionNum], defaultCondition3);
                 }
-                notCondition[conditionNum][0] = '!';
-                notCondition[conditionNum][1] = '(';
-                strcat(notCondition[conditionNum], condition[conditionNum]);
-                j = strlen(notCondition[conditionNum]);
-                notCondition[conditionNum][j] = ')';
-                notCondition[conditionNum][j + 1] = '\0';
+                j = strlen(condition[conditionNum]);
+                condition[conditionNum][j] = '\0';
+                defaultCondition = conditionNum;
                 conditionNum++;
             }
         }
@@ -222,48 +220,66 @@ int main(void)
             conditionNum++;
         }
     }
-    for (i = 0; i < conditionNum; i++)
+    for (i = 0; i < noInputVarsNum; i++)
     {
-        for (j = 0; j < noInputVarsNum; j++)
+        for (j = 0; j < conditionNum; j++)
         {
-            if (strstr(condition[i], noInputVars[j]))
+            if (strstr(condition[j], noInputVars[i]))
             {
                 if (unknownVarsCount != 0)
                 {
                     unknownVarsCount++;
                 }
-                unknownVarsNum[unknownVarsCount] = j;
+                unknownVarsNum[unknownVarsCount] = i;
+                if (unknownVarsCount == 0)
+                {
+                    unknownVarsCount++;
+                }
+                break;
             }
         }
     }
-    if (functionCount != 0)
+    if (unknownVarsCount > 0)
     {
-        for (i = mainStart; i < mainEnd; i++)
+        if (functionCount != 0)
         {
-            for (j = 0; j < unknownVarsCount + 1; j++)
+            for (i = mainStart; i < mainEnd; i++)
             {
-                if (strstr(data[i], noInputVars[unknownVarsNum[j]]) &&
-                    strstr(data[i], functionName) && !strstr(data[i], "printf"))
+                for (j = 0; j < unknownVarsCount + 1; j++)
                 {
-                    if (callFunction[callFunctionNum][0] == '\0')
+                    if (strstr(data[i], noInputVars[unknownVarsNum[j]]) &&
+                        strstr(data[i], functionName) && !strstr(data[i], "printf"))
                     {
-                        strcpy(callFunction[callFunctionNum], data[i] + 1);
+                        if (callFunction[callFunctionNum][0] == '\0')
+                        {
+                            strcpy(callFunction[callFunctionNum], data[i] + 1);
+                        }
+                        else
+                        {
+                            strcpy(callFunction[callFunctionNum], data[i]);
+                        }
+                        callFunctionNum++;
                     }
-                    else
-                    {
-                        strcpy(callFunction[callFunctionNum], data[i]);
-                    }
-                    callFunctionNum++;
                 }
             }
-        }
-        for (i = 0; i < callFunctionNum; i++)
-        {
-            if (i == 0)
+            for (i = 0; i < callFunctionNum - 1; i++)
             {
-                printf("\n関数呼び出し\n");
+                if (i == 0)
+                {
+                    printf("\n関数呼び出し\n");
+                }
+                printf("%s", callFunction[i]);
             }
-            printf("%s", callFunction[i]);
+        }
+        {
+            for (i = 0; i < N; i++)
+            {
+                if (i == 0)
+                {
+                    printf("\n関数\n");
+                }
+                printf("%s", function[i]);
+            }
         }
     }
     for (i = 0; i < conditionNum; i++)
@@ -271,9 +287,17 @@ int main(void)
         if (i == 0)
         {
             printf("\nテストケース評価基準\n");
+            printf("\n入力変数の型から生成\n");
+        }
+        if (i == defaultCondition + 1)
+        {
+            printf("\n条件文から生成\n");
         }
         printf("%s\n", condition[i]);
-        printf("%s\n", notCondition[i]);
+        if (i > defaultCondition)
+        {
+            printf("%s\n", notCondition[i]);
+        }
     }
     free(data);
     free(condition);
@@ -514,12 +538,7 @@ void loadFunction(char **data, char **function, char *functionName, int *functio
         }
         if (functionFlag == 1)
         {
-            if (k == 0)
-            {
-                printf("\n関数\n");
-            }
             strcpy(function[k], data[i]);
-            printf("%s", function[k]);
             k++;
         }
 
