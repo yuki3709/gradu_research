@@ -1,0 +1,13 @@
+
+入力のデータ構造
+(double height double weight)
+
+テストケース評価基準
+
+入力変数の型から生成
+height > 0
+height == 0
+height < 0
+weight > 0
+weight == 0
+weight < 0

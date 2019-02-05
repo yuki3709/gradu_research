@@ -11,9 +11,11 @@
 \BOOKMARK [1][-]{section.2.5}{システムの評価}{chapter.2}% 10
 \BOOKMARK [1][-]{section.2.6}{システムの課題}{chapter.2}% 11
 \BOOKMARK [0][-]{chapter.3}{テストケース評価基準の自動生成}{}% 12
-\BOOKMARK [1][-]{section.3.1}{背景}{chapter.3}% 13
-\BOOKMARK [0][-]{chapter.4}{検証}{}% 14
-\BOOKMARK [1][-]{section.4.1}{背景}{chapter.4}% 15
-\BOOKMARK [0][-]{chapter.5}{おわりに}{}% 16
-\BOOKMARK [0][-]{chapter*.2}{謝 辞}{}% 17
-\BOOKMARK [0][-]{chapter*.3}{}{}% 18
+\BOOKMARK [1][-]{section.3.1}{手法の概要}{chapter.3}% 13
+\BOOKMARK [1][-]{section.3.2}{評価基準生成システムの作成}{chapter.3}% 14
+\BOOKMARK [0][-]{chapter.4}{検証}{}% 15
+\BOOKMARK [1][-]{section.4.1}{評価基準を生成できた問題}{chapter.4}% 16
+\BOOKMARK [1][-]{section.4.2}{評価基準を生成できなかった問題}{chapter.4}% 17
+\BOOKMARK [0][-]{chapter.5}{おわりに}{}% 18
+\BOOKMARK [0][-]{chapter*.2}{謝 辞}{}% 19
+\BOOKMARK [0][-]{chapter*.3}{}{}% 20

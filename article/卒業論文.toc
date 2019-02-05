@@ -10,9 +10,11 @@
 \contentsline {section}{\numberline {2.5}システムの評価}{7}{section.2.5}
 \contentsline {section}{\numberline {2.6}システムの課題}{7}{section.2.6}
 \contentsline {chapter}{\numberline {第3章}テストケース評価基準の自動生成}{8}{chapter.3}
-\contentsline {section}{\numberline {3.1}背景}{8}{section.3.1}
-\contentsline {chapter}{\numberline {第4章}検証}{9}{chapter.4}
-\contentsline {section}{\numberline {4.1}背景}{9}{section.4.1}
-\contentsline {chapter}{\numberline {第5章}おわりに}{10}{chapter.5}
-\contentsline {chapter}{謝 辞}{11}{chapter*.2}
-\contentsline {chapter}{\numberline {参 考 文 献}}{12}{chapter*.3}
+\contentsline {section}{\numberline {3.1}手法の概要}{8}{section.3.1}
+\contentsline {section}{\numberline {3.2}評価基準生成システムの作成}{8}{section.3.2}
+\contentsline {chapter}{\numberline {第4章}検証}{14}{chapter.4}
+\contentsline {section}{\numberline {4.1}評価基準を生成できた問題}{14}{section.4.1}
+\contentsline {section}{\numberline {4.2}評価基準を生成できなかった問題}{17}{section.4.2}
+\contentsline {chapter}{\numberline {第5章}おわりに}{20}{chapter.5}
+\contentsline {chapter}{謝 辞}{21}{chapter*.2}
+\contentsline {chapter}{\numberline {参 考 文 献}}{22}{chapter*.3}
