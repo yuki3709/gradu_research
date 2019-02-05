@@ -29,7 +29,7 @@ void loadVars(char **data, int start, int end, Var *vars, int *varsCount);
 void loadFunction(char **data, char **function, char *functionName, int *functionCount, Argument *arguments, int *argCount);
 int countMainStartIndex(char **data);
 int countMainEndIndex(char **data, int startIndex);
-int main(void)
+int main(int argc, char *argv[])
 {
     char *filename;
     int i;
@@ -58,15 +58,18 @@ int main(void)
     char defaultCondition1[] = " > 0";
     char defaultCondition2[] = " == 0";
     char defaultCondition3[] = " < 0";
-    char *inputFileName = (char *)malloc(sizeof(int) * 20);
     char **condition = malloc(sizeof(char *) * N);
     char **notCondition = malloc(sizeof(char *) * N);
     char **data = malloc(sizeof(char *) * N);
     char **function = malloc(sizeof(char *) * N);
     char *functionName = (char *)malloc(sizeof(char) * 20);
     char **callFunction = malloc(sizeof(char *) * N);
-    scanf("%s", inputFileName);
-    filename = inputFileName;
+    if (argc < 2)
+    {
+        printf("引数が足りません\n");
+        return -1;
+    }
+    filename = argv[1];
     Var vars[20];
     Input input[10];
     Argument arguments[5];
@@ -293,15 +296,16 @@ int main(void)
                 }
                 printf("%s", callFunction[i]);
             }
-        }
-        {
-            for (i = 0; i < N; i++)
+
             {
-                if (i == 0)
+                for (i = 0; i < N; i++)
                 {
-                    printf("\n関数\n");
+                    if (i == 0)
+                    {
+                        printf("\n関数\n");
+                    }
+                    printf("%s", function[i]);
                 }
-                printf("%s", function[i]);
             }
         }
     }
@@ -329,7 +333,6 @@ int main(void)
     free(callFunction);
     free(unknownVarsNum);
     free(functionName);
-    free(inputFileName);
     return 0;
 }
 int loadData(char *filename, char *data[N])
