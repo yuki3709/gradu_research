@@ -14,6 +14,11 @@ typedef struct Input
     char type[10];
     char name[30];
 } Input;
+typedef struct Argument
+{
+    char type[10];
+    char name[30];
+} Argument;
 int loadData(char *filename, char **data);
 int mallocCondition(char **condition);
 int mallocNotCondition(char **notCondition);
@@ -21,10 +26,10 @@ int mallocF(char **function);
 int mallocCF(char **callFunction);
 void loadVar(char *line, Var *var);
 void loadVars(char **data, int start, int end, Var *vars, int *varsCount);
-void loadFunction(char **data, char **function, char *functionName, int *functionCount);
+void loadFunction(char **data, char **function, char *functionName, int *functionCount, Argument *arguments, int *argCount);
 int countMainStartIndex(char **data);
 int countMainEndIndex(char **data, int startIndex);
-int main(void)
+int main(int argc, char *argv[])
 {
     char *filename;
     int i;
@@ -42,6 +47,7 @@ int main(void)
     int defaultCondition;
     int functionCount = 0;
     int varsCount = 0;
+    int argCount = 0;
     int varsCheck[30];
     int noInputVarsNum = 0;
     int callFunctionNum = 0;
@@ -52,17 +58,21 @@ int main(void)
     char defaultCondition1[] = " > 0";
     char defaultCondition2[] = " == 0";
     char defaultCondition3[] = " < 0";
-    char *inputFileName = (char *)malloc(sizeof(int) * 20);
     char **condition = malloc(sizeof(char *) * N);
     char **notCondition = malloc(sizeof(char *) * N);
     char **data = malloc(sizeof(char *) * N);
     char **function = malloc(sizeof(char *) * N);
     char *functionName = (char *)malloc(sizeof(char) * 20);
     char **callFunction = malloc(sizeof(char *) * N);
-    scanf("%s", inputFileName);
-    filename = inputFileName;
+    if (argc < 2)
+    {
+        printf("引数が足りません\n");
+        return -1;
+    }
+    filename = argv[1];
     Var vars[20];
     Input input[10];
+    Argument arguments[5];
     if (loadData(filename, data) == -1)
     {
         free(data);
@@ -156,7 +166,23 @@ int main(void)
             noInputVarsNum++;
         }
     }
-    loadFunction(data, function, functionName, &functionCount);
+    loadFunction(data, function, functionName, &functionCount, arguments, &argCount);
+    for (i = 0; i < argCount; i++)
+    {
+        varsCheck[i] = 0;
+        for (j = 0; j < inputNameNum; j++)
+        {
+            if (strcmp(arguments[i].name, inputName[j]) == 0)
+            {
+                varsCheck[i]++;
+            }
+        }
+        if (varsCheck[i] == 0)
+        {
+            strcpy(noInputVars[noInputVarsNum], arguments[i].name);
+            noInputVarsNum++;
+        }
+    }
     for (i = 0; i < inputNameNum; i++)
     {
         if (strcmp(input[i].type, "int") || strcmp(input[i].type, "double") ||
@@ -270,15 +296,16 @@ int main(void)
                 }
                 printf("%s", callFunction[i]);
             }
-        }
-        {
-            for (i = 0; i < N; i++)
+
             {
-                if (i == 0)
+                for (i = 0; i < N; i++)
                 {
-                    printf("\n関数\n");
+                    if (i == 0)
+                    {
+                        printf("\n関数\n");
+                    }
+                    printf("%s", function[i]);
                 }
-                printf("%s", function[i]);
             }
         }
     }
@@ -306,7 +333,6 @@ int main(void)
     free(callFunction);
     free(unknownVarsNum);
     free(functionName);
-    free(inputFileName);
     return 0;
 }
 int loadData(char *filename, char *data[N])
@@ -474,7 +500,7 @@ void loadVars(char **data, int start, int end, Var *vars, int *varsCount)
     //     }
     // }
 }
-void loadFunction(char **data, char **function, char *functionName, int *functionCount)
+void loadFunction(char **data, char **function, char *functionName, int *functionCount, Argument *arguments, int *argCount)
 {
     int functionNum = 0;
     int i;
@@ -485,6 +511,10 @@ void loadFunction(char **data, char **function, char *functionName, int *functio
     int nameFlag;
     int nameStart;
     int nameRange;
+    int argTypeStart;
+    int argTypeRange;
+    int argNameStart;
+    int argNameRange;
     for (i = 0; i < N; i++)
     {
         if (data[i][0] != ' ' && data[i][0] != '\t' && data[i][0] != '\v' && data[i][0] != '\f' &&
@@ -526,9 +556,36 @@ void loadFunction(char **data, char **function, char *functionName, int *functio
                 if (data[i][j] == '(' && nameFlag == 1)
                 {
                     nameRange = j - nameStart;
+                    argTypeStart = j;
                     strncpy(functionName, data[i] + nameStart, nameRange);
                     nameFlag++;
-                    break;
+                }
+                if (data[i][j] == ' ' && nameFlag == 2)
+                {
+                    if (data[i][j - 1] == ',')
+                    {
+                        continue;
+                    }
+                    argTypeRange = j - argTypeStart;
+                    argNameStart = j + 1;
+                    strncpy(arguments[*argCount].type, data[i] + argTypeStart + 1, argTypeRange);
+                    nameFlag++;
+                }
+                if ((data[i][j] == ',' || data[i][j] == ')') && nameFlag == 3)
+                {
+                    argNameRange = j - argNameStart;
+                    strncpy(arguments[*argCount].name, data[i] + argNameStart, argNameRange);
+                    arguments[*argCount].name[argNameRange] = '\0';
+                    if (data[i][j] == ',')
+                    {
+                        nameFlag = 2;
+                    }
+                    else
+                    {
+                        break;
+                    }
+                    *argCount += 1;
+                    argTypeStart = j + 1;
                 }
             }
         }
