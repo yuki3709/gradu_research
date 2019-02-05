@@ -1,0 +1,30 @@
+
+入力のデータ構造
+(double height double weight)
+
+関数呼び出し
+bmi = BMI(height, weight);
+
+関数
+double BMI(double height, double weight)
+{
+	return weight / ((height * height) / 10000);
+}
+
+テストケース評価基準
+
+入力変数の型から生成
+height > 0
+height == 0
+height < 0
+weight > 0
+weight == 0
+weight < 0
+
+条件文から生成
+height <= 0 || weight <= 0
+!(height <= 0 || weight <= 0)
+bmi >= 25
+!(bmi >= 25)
+bmi < 18.5
+!(bmi < 18.5)

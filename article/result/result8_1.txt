@@ -1,0 +1,26 @@
+
+入力のデータ構造
+(int num1 int num2)
+
+関数
+int min(int x, int y)
+{
+      if (x < y)
+            return x;
+      else
+            return y;
+}
+
+テストケース評価基準
+
+入力変数の型から生成
+num1 > 0
+num1 == 0
+num1 < 0
+num2 > 0
+num2 == 0
+num2 < 0
+
+条件文から生成
+x < y
+!(x < y)
