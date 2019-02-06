@@ -131,7 +131,7 @@
 % 参考文献を目次に出してラベルを丸括弧でくくる
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \def\bibname{参 考 文 献}
-\def\@biblabel#1{(#1)}
+\def\@biblabel#1{[#1]}
 \def\@cite#1#2{{$^{\mbox{\scriptsize $#1$}}$%
     \if@tempswa , #2\fi}$^{\mbox{\scriptsize $)$}}$ }
 \renewenvironment{thebibliography}[1]

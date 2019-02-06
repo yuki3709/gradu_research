@@ -17,20 +17,20 @@
 % ここでタイトルの設定をします
 %
 % 自分の名前
-\author{尾崎　裕樹}
+\author{尾崎 裕樹}
 %
 % 学籍番号
 \gakusekibangou{1515015}
 %
 % タイトル
 \title{プログラミング演習における模範解答を用いた\\テストケース評価基準の自動生成}
-\etitle{English Title}
+\etitle{Automatic generation of evaluation criteria for test cases\\ using example codes in programming exercises}
 %
 % 日付
 \date{2019年2月}
 %
 % 指導教員
-\professor{中村　正樹 准教授}
+\professor{中村 正樹 准教授}
 %
 % 所属
 \department{電子・情報工学科}
@@ -203,9 +203,8 @@ function countmax(\$list)\{
 \section{手法の概要}
 設計したテストケースが適切であるかを評価するためのテストケース評価基準を生成する際に，問題文を分析して記述するのではなく，模範解答のプログラムを解析することによって，テストが必要な値と判定条件を抽出する。
 \section{評価基準生成システムの作成}
-以下の身長と体重を入力してbmiを計算し，肥満度を表示するプログラムから評価基準を抽出できるように評価基準生成システムを作成する。その後，参考書~\cite{b1}に記述されている見本のプログラムからも評価基準を抽出できるように評価基準生成システムを拡張していく。
-\lstinputlisting[xleftmargin=1cm]{source/bmi.c}
-\lstinputlisting[xleftmargin=1cm]{result/bmiResult.txt}
+参考書~\cite{b1}に記述されている見本のプログラムから評価基準を抽出できるように評価基準生成システムを作成する。
+
 \begin{itembox}[l]{見本のプログラム1}
 キーボードから少数を入力して表示する。
 \end{itembox}
@@ -224,6 +223,11 @@ function countmax(\$list)\{
 
 \lstinputlisting[xleftmargin=1cm]{source/Sample8_7.c}
 \lstinputlisting[xleftmargin=1cm]{result/resultS8_7.txt}
+
+
+以下に記述する身長と体重を入力してbmiを計算し，肥満度を表示するプログラムからも評価基準を抽出できるように評価基準生成システムを拡張していく。
+\lstinputlisting[xleftmargin=1cm]{source/bmi.c}
+\lstinputlisting[xleftmargin=1cm]{result/bmiResult.txt}
 \chapter{検証}
 この章では，参考書~\cite{b1}の練習問題で模範解答から評価基準が生成できるかを検証する。
 \section{評価基準を生成できた問題}
