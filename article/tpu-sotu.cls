@@ -123,7 +123,7 @@
   \addcontentsline{toc}{chapter}{\ackname}}
   \addtocontents{lof}{\protect\addvspace{10\p@}}%
   \addtocontents{lot}{\protect\addvspace{10\p@}}%
-  \hspace{\parindent}%
+
 }
 \def\ackname{謝 辞}
 
