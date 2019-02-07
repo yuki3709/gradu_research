@@ -12,10 +12,12 @@
 \BOOKMARK [1][-]{section.2.6}{システムの課題}{chapter.2}% 11
 \BOOKMARK [0][-]{chapter.3}{テストケース評価基準の自動生成}{}% 12
 \BOOKMARK [1][-]{section.3.1}{手法の概要}{chapter.3}% 13
-\BOOKMARK [1][-]{section.3.2}{評価基準生成システムの作成}{chapter.3}% 14
-\BOOKMARK [0][-]{chapter.4}{検証}{}% 15
-\BOOKMARK [1][-]{section.4.1}{評価基準を生成できた問題}{chapter.4}% 16
-\BOOKMARK [1][-]{section.4.2}{評価基準を生成できなかった問題}{chapter.4}% 17
-\BOOKMARK [0][-]{chapter.5}{おわりに}{}% 18
-\BOOKMARK [0][-]{chapter*.2}{謝 辞}{}% 19
-\BOOKMARK [0][-]{chapter*.3}{}{}% 20
+\BOOKMARK [1][-]{section.3.2}{入力データの型に基づく評価基準}{chapter.3}% 14
+\BOOKMARK [1][-]{section.3.3}{条件文に基づく評価基準}{chapter.3}% 15
+\BOOKMARK [1][-]{section.3.4}{関数を含むプログラムに対する評価基準}{chapter.3}% 16
+\BOOKMARK [0][-]{chapter.4}{プログラミング課題への適用}{}% 17
+\BOOKMARK [1][-]{section.4.1}{評価基準を生成できた問題}{chapter.4}% 18
+\BOOKMARK [1][-]{section.4.2}{評価基準を生成できなかった問題}{chapter.4}% 19
+\BOOKMARK [0][-]{chapter.5}{おわりに}{}% 20
+\BOOKMARK [0][-]{chapter*.2}{謝 辞}{}% 21
+\BOOKMARK [0][-]{chapter*.3}{}{}% 22
