@@ -125,6 +125,10 @@ int main(int argc, char *argv[])
             }
         }
         inputNameRange = rightParenthesis - camma - 2 - ampersand;
+        if (strncmp(inputName[inputNameNum-1], data[i] + camma + 2 + ampersand, inputNameRange) == 0)
+        {
+            continue;
+        }
         strncpy(inputName[inputNameNum], data[i] + camma + 2 + ampersand, inputNameRange);
         inputName[inputNameNum][inputNameRange] = '\0';
         inputNameNum++;
@@ -137,6 +141,9 @@ int main(int argc, char *argv[])
         {
             if (strcmp(vars[i].name, inputName[j]) == 0)
             {
+                // if (strcmp(inputName[j],inputName[j-1])==0){
+                //     continue;
+                // }
                 strcpy(input[j].type, vars[i].type);
                 strcpy(input[j].name, vars[i].name);
                 if (inputNameNum == 1)
