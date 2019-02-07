@@ -1,20 +1,20 @@
 %
 % tpu-abst.cls
 %
-% ‚±‚Ì class file ‚ÍCplnews.cls ‚ðŽQl‚É‚µ‚Ä‚¢‚Ü‚·D
+% ã“ã® class file ã¯ï¼Œplnews.cls ã‚’å‚è€ƒã«ã—ã¦ã„ã¾ã™ï¼Ž
 %                   Written by Toru Nakazawa(In Marsh) 1998/2/4
 %
 % 2013.1.29: by Ms.K
-% •ÏXF Œ¤‹†Žº–¼‚ÆŠwÐ”Ô†•Ž–¼‚ð‰E‘µ‚¦‚É
-% •ÏXF textheight=257mmŒÅ’è
+% å¤‰æ›´ï¼š ç ”ç©¶å®¤åã¨å­¦ç±ç•ªå·ï¼†æ°åã‚’å³æƒãˆã«
+% å¤‰æ›´ï¼š textheight=257mmå›ºå®š
 % 2010.1.24: by Ms.K
-% •ÏXF î•ñƒVƒXƒeƒ€HŠw‰È—p‚É•ÏX
+% å¤‰æ›´ï¼š æƒ…å ±ã‚·ã‚¹ãƒ†ãƒ å·¥å­¦ç§‘ç”¨ã«å¤‰æ›´
 %
 % 2005.2.7: by Ms.K
-% •ÏXF Œ¤‹†Žº–¼‚ÆŠwÐ”Ô†•Ž–¼‚ð¶‘µ‚¦‚É
-% •ÏXF labname=10 ŒvŽZ‹@ƒZƒ“ƒ^[ ¨ ƒ\ƒtƒgƒEƒFƒAHŠw
+% å¤‰æ›´ï¼š ç ”ç©¶å®¤åã¨å­¦ç±ç•ªå·ï¼†æ°åã‚’å·¦æƒãˆã«
+% å¤‰æ›´ï¼š labname=10 è¨ˆç®—æ©Ÿã‚»ãƒ³ã‚¿ãƒ¼ â†’ ã‚½ãƒ•ãƒˆã‚¦ã‚§ã‚¢å·¥å­¦
 % 2006.2.14: by Ms.K
-% •ÏXF sectionƒ^ƒCƒgƒ‹¶Šñ‚¹
+% å¤‰æ›´ï¼š sectionã‚¿ã‚¤ãƒˆãƒ«å·¦å¯„ã›
 %
 \NeedsTeXFormat{pLaTeX2e}
 \ProvidesClass{tpu-abst}[1998/02/05 v1.0a Standard pLaTeX class]
@@ -107,10 +107,10 @@
 % misc.
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %\def\labname#1{%
-%    \ifcase#1 ‚È‚È‚µ‚Ì\or “dŽ¥‰ðÍ\or “dŽq‰ñ˜H\or §ŒäƒVƒXƒeƒ€HŠw\or Œv
-%    ŽZ‹@HŠw\or î•ñHŠw\or ’ÊMHŠw\or “dŽ¥”gHŠw\or ‹@”\Þ—¿HŠw\or ƒf
-%    ƒoƒCƒXHŠw\or ƒ\ƒtƒgƒEƒFƒAHŠw\or Ž‹Šoî•ñˆ—\or ŒÅ‘Ì•¨«\or ‰¹ºŒ¾Œê
-%    HŠw\fi\kouzatitle}
-\def\kouzatitle{Œ¤‹†Žº}
+%    \ifcase#1 ãªãªã—ã®\or é›»ç£è§£æž\or é›»å­å›žè·¯\or åˆ¶å¾¡ã‚·ã‚¹ãƒ†ãƒ å·¥å­¦\or è¨ˆ
+%    ç®—æ©Ÿå·¥å­¦\or æƒ…å ±å·¥å­¦\or é€šä¿¡å·¥å­¦\or é›»ç£æ³¢å·¥å­¦\or æ©Ÿèƒ½ææ–™å·¥å­¦\or ãƒ‡
+%    ãƒã‚¤ã‚¹å·¥å­¦\or ã‚½ãƒ•ãƒˆã‚¦ã‚§ã‚¢å·¥å­¦\or è¦–è¦šæƒ…å ±å‡¦ç†\or å›ºä½“ç‰©æ€§\or éŸ³å£°è¨€èªž
+%    å·¥å­¦\fi\kouzatitle}
+\def\kouzatitle{ç ”ç©¶å®¤}
 \def\labname{\@kouzaname\kouzatitle}
 \endinput
