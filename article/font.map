@@ -1,0 +1,24 @@
+rml H :0:msmincho.ttc
+rmlv V :0:msmincho.ttc
+gbm H :0:msgothic.ttc
+gbmv V :0:msgothic.ttc
+
+unijmin-h UniJIS-UTF16-H :0:msmincho.ttc
+unijmin-v UniJIS-UTF16-V :0:msmincho.ttc
+unijgoth-h UniJIS-UTF16-H :0:msgothic.ttc
+unijgoth-v UniJIS-UTF16-V :0:msgothic.ttc
+
+cidmin-h Identity-H :0:msmincho.ttc/AJ1
+cidmin-v Identity-V :0:msmincho.ttc/AJ1
+cidgoth-h Identity-H :0:msgothic.ttc/AJ1
+cidgoth-v Identity-V :0:msgothic.ttc/AJ1
+
+hmr H :0:msmincho.ttc
+hmrv V :0:msmincho.ttc
+hkb H :0:msgothic.ttc
+hkbv V :0:msgothic.ttc
+
+hminr-h H :0:msmincho.ttc
+hminr-v V :0:msmincho.ttc
+hgothr-h H :0:msgothic.ttc
+hgothr-v V :0:msgothic.ttc
