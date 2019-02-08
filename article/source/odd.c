@@ -1,4 +1,3 @@
-#define _CRT_SECURE_NO_WARNINGS
 #include <stdio.h>
 
 int even(int num)
@@ -12,13 +11,13 @@ int main(void)
     printf("整数を入力してください。\n");
     scanf("%d", &num);
 
-    if (even(num) == 1)
+    if (even(num) == 0)
     {
-        printf("奇数です。\n");
+        printf("偶数です。\n");
     }
     else
     {
-        printf("偶数です。\n");
+        printf("奇数です。\n");
     }
     return 0;
 }
