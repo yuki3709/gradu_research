@@ -5,7 +5,32 @@
 \documentclass[10pt]{tpu-abst}
 \usepackage[dvipdfmx]{graphicx}
 \usepackage{listings,jlisting}
-
+\makeatletter
+  \renewenvironment{thebibliography}[1]{%
+    \global\let\presectionname\relax
+    \global\let\postsectionname\relax
+    \section*{\refname}\@mkboth{\refname}{\refname}%
+    \list{\@biblabel{\@arabic\c@enumiv}}%
+          {\settowidth\labelwidth{\@biblabel{#1}}%
+          \leftmargin\labelwidth
+          \advance\leftmargin\labelsep
+          % 文字サイズ？
+          \setlength\baselineskip{11pt}
+          % アイテム間のマージン
+          \setlength\itemsep{0.4zh}
+          \@openbib@code
+          \usecounter{enumiv}%
+          \let\p@enumiv\@empty
+          \renewcommand\theenumiv{\@arabic\c@enumiv}}%
+    \sloppy
+    \clubpenalty4000
+    \@clubpenalty\clubpenalty
+    \widowpenalty4000%
+    \sfcode`\.\@m}
+    {\def\@noitemerr
+      {\@latex@warning{Empty `thebibliography' environment}}%
+    \endlist}
+\makeatother
 \lstset{language=C,%
     basicstyle={\ttfamily\footnotesize}, %書体の指定
     frame= tb, %フレームの指定
@@ -38,7 +63,7 @@
 % \kouzaname{奥原} % 
 % \kouzaname{西田} % 
 % \kouzaname{榊原} % 
-\kouzaname{中村(正)} % 
+\kouzaname{中村} % 
 % \kouzaname{松本(三)} % 
 % \kouzaname{唐山} % 
 % \kouzaname{鳥山} % 
@@ -72,7 +97,7 @@
 \section{ はじめに}
 %
 プログラミング演習において，学生自身がテストケースを設計しテストを行うことによって，学生が作成したプログラムを自身で評価することができる。
-文献~\cite{a1}では，テストケースが適切であるかを判定する評価基準を用意して，設計したテストケースの評価基準に対する網羅率を求めることでテストケースを評価する手法が提案されている。
+文献~\cite{a1}では，テストケースが適切であるかを判定する評価基準を用意して，設計したテストケースの評価基準に対する網羅率を求めることで，テストケースを評価する手法が提案されている。
 このシステムでは，教員が演習問題ごとにテストケース評価基準を与える必要がある。
 
 本研究では，テストケース評価基準作成時における教員の負担を減らすために，テストケース評価基準を自動生成する手法を提案する（図\ref{cap1}）。
@@ -84,7 +109,7 @@
 \end{figure}
 %
 \section{テストケース評価基準の自動生成}
-プログラミング演習では，通常のソフトウェア開発と異なり教員が模範解答を用意している点に着目し，提案システムでは，テストケース評価基準を生成する際に，問題文(仕様)を分析して記述するのではなく，模範解答(ソースプログラム)を解析し，入力がある変数と条件式を抽出することによって，テストケース評価基準を生成する。2つの整数値を受け取り，大きさを比較した結果を表示するプログラムを例にテストケース評価基準を生成する手順を説明する。
+プログラミング演習では，通常のソフトウェア開発と異なり教員が模範解答を用意しているという点に着目し，提案システムでは，テストケース評価基準を生成する際に，問題文(仕様)を分析して記述するのではなく，模範解答(ソースプログラム)を解析し，入力変数と条件式を抽出することによって，テストケース評価基準を生成する。2つの整数値を受け取り，大きさを比較した結果を表示するプログラムを例にテストケース評価基準を生成する手順を説明する。
 まず，変数宣言部で変数の型と名前を構造体に格納し，標準入力命令部で使用される変数の型に基づきテストケース評価基準を生成する。例えば以下の模範解答のint型の入力変数に対し，
 \begin{lstlisting}
 変数宣言
@@ -103,7 +128,7 @@ num1 > 0, num1 == 0, num1 < 0
 num2 > 0, num2 == 0, num2 < 0
 \end{lstlisting}
 
-次に，条件文を抽出することでテストケース評価基準を生成する。その際，分岐網羅をするために，条件文の否定を記述する。 模範解答の条件文に対し，
+次に，条件文を抽出することでテストケース評価基準を生成する。その際，分岐網羅をするために，条件文の否定も評価基準に含める。 以下の模範解答の条件文に対し，
 \begin{lstlisting}
 条件文の一部
 if (num1 < num2){
@@ -135,8 +160,8 @@ num1 > num2, !(num1 > num2)
 現在対応できていない配列や繰り返し文，関数を含むプログラムからの評価基準の自動生成が今後の課題である。
 
 \begin{thebibliography}{2}
- \bibitem{a1} {\small 蜂巣吉成，小林悟，吉田敦，阿草清磁：　プログラミング演習におけるテストケース評価システム，コンピュータソフトウェア第34巻第4号，2017，pp.54-60}
- \bibitem{b1} {\small 高橋麻奈：　やさしいC，SB クリエイティブ，2012}
+ \bibitem{a1} {\small 蜂巣ら: プログラミング演習におけるテストケース評価システム, コンピュータソフトウェア, vol.34, no.4, \\pp.54-60, 2017.}\vspace{-1mm}
+ \bibitem{b1} {\small 高橋麻奈: やさしいC, SB クリエイティブ, 2012.}
 \end{thebibliography}
 %
 \end{document}
