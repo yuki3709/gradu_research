@@ -1,0 +1,19 @@
+
+入力のデータ構造
+(int num)
+関数
+int even(int num)
+{
+    return num % 2;
+}
+
+テストケース評価基準
+
+入力変数の型から生成
+num > 0
+num == 0
+num < 0
+
+条件文から生成
+even(num) == 1
+!(even(num) == 1)

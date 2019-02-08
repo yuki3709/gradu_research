@@ -125,7 +125,7 @@ int main(int argc, char *argv[])
             }
         }
         inputNameRange = rightParenthesis - camma - 2 - ampersand;
-        if (strncmp(inputName[inputNameNum-1], data[i] + camma + 2 + ampersand, inputNameRange) == 0)
+        if (strncmp(inputName[inputNameNum - 1], data[i] + camma + 2 + ampersand, inputNameRange) == 0)
         {
             continue;
         }
@@ -272,6 +272,7 @@ int main(int argc, char *argv[])
             }
         }
     }
+
     if (unknownVarsCount > 0)
     {
         if (functionCount != 0)
@@ -316,6 +317,22 @@ int main(int argc, char *argv[])
             }
         }
     }
+
+    for (i = 0; i < conditionNum; i++)
+    {
+        if (strstr(condition[i], functionName))
+        {
+            for (j = 0; j < N; j++)
+            {
+                if (j == 0)
+                {
+                    printf("\n関数\n");
+                }
+                printf("%s", function[j]);
+            }
+        }
+    }
+
     for (i = 0; i < conditionNum; i++)
     {
         if (i == 0)
