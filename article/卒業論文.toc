@@ -1,6 +1,6 @@
 \contentsline {chapter}{\numberline {第1章}はじめに}{1}{chapter.1}
 \contentsline {section}{\numberline {1.1}背景}{1}{section.1.1}
-\contentsline {section}{\numberline {1.2}目的}{5}{section.1.2}
+\contentsline {section}{\numberline {1.2}目的}{4}{section.1.2}
 \contentsline {section}{\numberline {1.3}論文の構成}{5}{section.1.3}
 \contentsline {chapter}{\numberline {第2章}プログラミング演習におけるテストケース評価システム}{6}{chapter.2}
 \contentsline {section}{\numberline {2.1}テストケース評価システム}{6}{section.2.1}
@@ -16,7 +16,8 @@
 \contentsline {section}{\numberline {3.4}関数を含むプログラムに対する評価基準}{14}{section.3.4}
 \contentsline {chapter}{\numberline {第4章}プログラミング課題への適用}{19}{chapter.4}
 \contentsline {section}{\numberline {4.1}評価基準を生成できた問題}{19}{section.4.1}
-\contentsline {section}{\numberline {4.2}評価基準を生成できなかった問題}{25}{section.4.2}
-\contentsline {chapter}{\numberline {第5章}おわりに}{28}{chapter.5}
-\contentsline {chapter}{謝 辞}{29}{chapter*.2}
-\contentsline {chapter}{\numberline {参 考 文 献}}{30}{chapter*.3}
+\contentsline {section}{\numberline {4.2}評価基準を生成できなかった問題}{23}{section.4.2}
+\contentsline {section}{\numberline {4.3}繰り返し文・配列・関数を含むプログラムでの検証}{25}{section.4.3}
+\contentsline {chapter}{\numberline {第5章}おわりに}{30}{chapter.5}
+\contentsline {chapter}{謝 辞}{31}{chapter*.2}
+\contentsline {chapter}{\numberline {参 考 文 献}}{32}{chapter*.3}
