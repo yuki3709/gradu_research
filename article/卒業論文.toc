@@ -14,9 +14,10 @@
 \contentsline {section}{\numberline {3.2}入力データの型に基づく評価基準}{9}{section.3.2}
 \contentsline {section}{\numberline {3.3}条件文に基づく評価基準}{11}{section.3.3}
 \contentsline {section}{\numberline {3.4}関数を含むプログラムに対する評価基準}{13}{section.3.4}
-\contentsline {chapter}{\numberline {第4章}プログラミング課題への適用}{17}{chapter.4}
-\contentsline {section}{\numberline {4.1}評価基準を生成できた問題}{17}{section.4.1}
-\contentsline {section}{\numberline {4.2}評価基準を生成できなかった問題}{20}{section.4.2}
+\contentsline {chapter}{\numberline {第4章}プログラミング課題への適用}{18}{chapter.4}
+\contentsline {section}{\numberline {4.1}評価基準を生成できた問題}{18}{section.4.1}
+\contentsline {section}{\numberline {4.2}評価基準を生成できなかった問題}{21}{section.4.2}
+\contentsline {section}{\numberline {4.3}関数を含むプログラムでの検証}{23}{section.4.3}
 \contentsline {chapter}{\numberline {第5章}おわりに}{26}{chapter.5}
 \contentsline {chapter}{謝 辞}{27}{chapter*.2}
 \contentsline {chapter}{\numberline {参 考 文 献}}{28}{chapter*.3}

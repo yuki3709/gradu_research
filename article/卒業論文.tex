@@ -86,7 +86,7 @@
 
 \begin{figure}[h]
   \centering
-  \includegraphics[width=130mm]{提案システムの位置づけ.png}
+  \includegraphics[width=130mm]{提案システムの位置づけ2.png}
   \caption{開発するシステムの位置づけ}
   \label{a3}
 \end{figure}
@@ -213,35 +213,57 @@ function countmax(\$list)\{
 参考書の例題のテストケースのデータ構造が評価システムに則した形式で記述できるか調査が行われ，実行時に入力のデータ構造が変化する共用体などの問題以外ではデータ構造を記述できることが確認された。
 
 また，評価システムにより，学生がテストケースを作成できるようになるのか確認をするために，プログラミングを学習済みの学生7人が評価システムを使ってボウリングの課題のテストケースを作成した。その結果最終的に6人の学生がカバレッジ100\%を達成したことが確認された。
+
 \section{システムの課題}
 テストケース評価システムでは，教員が問題文を分析した上で，評価基準を記述しているので，システムを運用する上で教員の負担が大きくなってしまうことが考えられる。
+
 \chapter{テストケース評価基準の自動生成}
 本章では，テストケース評価基準を自動で生成する手法の概要とシステムを作成する手順を示す。参考書~\cite{b1}に記述されている見本のプログラムを参考に評価基準生成システムを作成する。
+
 \section{手法の概要}
 前章のテストケース評価システムでは，教員が問題文を分析をし，テストケース評価基準や入力のデータ構造などを事前に記述しなければならない。そこで，プログラミング演習では，通常のソフトウェア開発と異なり教員が模範解答を用意しているという点に着目し，提案システムでは，テストケース評価基準を生成する際に，問題文(仕様)を分析して記述するのではなく，模範解答(ソースプログラム)を解析し，入力変数と条件式を抽出することによって，テストケース評価基準を生成する。また，入力された変数が正，負，0である場合のテストケースがあるのかを確認するためのテストケース評価基準を生成する。さらに，main関数以外の関数と関数の呼び出し部分を抽出し，テストケース評価基準とともに生成する。
+
 \section{入力データの型に基づく評価基準}
 まず，変数宣言から変数の型{\it t}と変数名{\it x}を抽出し保持する。標準入力命令\\
-{\tt \centerline {scanf({\it f}, \&{\it x})}}
+\[ 
+\mbox{{\tt {scanf({\it f}, \&{\it x})}}}
+\]
 が現れた場合に，変数{\it x}の型を参照し，入力のデータ構造\\
-\centerline{({\it t} {\it x})}
+\[
+(t\:x)
+\]
 を生成する。変数{\it x}の型{\it t}が{\tt int, double, float}のいずれかであった場合は\\
-{\tt
-\centerline{{\it x} > 0}
-\centerline{{\it x} == 0}
-\centerline{{\it x} < 0}
-}
+\[ 
+\mbox{\tt{{\it x} > 0}} 
+\]
+\[
+\mbox{\tt{{\it x} == 0}}
+\]
+\[
+\mbox{\tt{{\it x} < 0}}
+\]
 を評価基準として記述する。
 
 以下に記述する入力された小数を表示するプログラムを用いて定義した通りの実相がされているかを確認する。
 \lstinputlisting[xleftmargin=1cm]{source/Sample3_6.c}
 このプログラムでは，変数宣言部分から{\tt double num}を取得し，標準入力命令\\
-\centerline{\tt scanf("\%lf", \&num)}から{\tt num}が入力変数であることを判定し，入力のデータ構造\\
-\centerline{\tt double num}が生成される。また，変数{\tt num}は{\tt double}型なので，変数{\tt num}の判別式\\
-{\tt
-\centerline{num > 0}
-\centerline{num == 0}
-\centerline{num < 0}
-}
+\[ 
+\mbox{{\tt {scanf("\%lf", \&num)}}}
+\]
+から{\tt num}が入力変数であることを判定し，入力のデータ構造\\
+\[
+\mbox{{\tt double num}}
+\]
+が生成される。また，変数{\tt num}は{\tt double}型なので，変数{\tt num}の判別式\\
+\[ 
+\mbox{\tt{num > 0}} 
+\]
+\[
+\mbox{\tt{num == 0}}
+\]
+\[
+\mbox{\tt{num < 0}}
+\]
 がテストケース評価基準として生成される。
 上記プログラムを入力としてシステムを実行した結果を以下に示す。
 \lstinputlisting[xleftmargin=1cm]{result/resultS3_6.txt}
@@ -266,16 +288,32 @@ function countmax(\$list)\{
 以下に記述する入力された整数が１の場合とそれ以外の場合で異なる文字を表示するプログラムを用いて定義した通りの実相がされているかを確認する。
 \lstinputlisting[xleftmargin=1cm]{source/Sample5_3.c}
 このプログラムでは，変数宣言部分から{\tt int res}を取得し，標準入力命令\\
-\centerline{\tt scanf("\%lf", \&res)}から{\tt res}が入力変数であることを判定し，入力データの構造\\
-\centerline{\tt int res}が生成される。また，変数{\tt res}は{\tt int}型なので，変数{\tt res}の判別式\\
-{\tt
-\centerline{res > 0}
-\centerline{res == 0}
-\centerline{res < 0}
-}
+\[ 
+\mbox{{\tt {scanf("\%lf", \&res)}}}
+\]
+から{\tt res}が入力変数であることを判定し，入力データの構造\\
+\[
+\mbox{{\tt  int res}}
+\]
+が生成される。また，変数{\tt res}は{\tt int}型なので，変数{\tt res}の判別式\\
+\[ 
+\mbox{\tt{res > 0}} 
+\]
+\[
+\mbox{\tt{res == 0}}
+\]
+\[
+\mbox{\tt{res < 0}}
+\]
 がテストケース評価基準として生成される。また，条件判断文{\tt if}から条件式\\
-\centerline{\tt res == 1}とその否定\\
-\centerline{\tt !(res == 1)}がテストケース評価基準として生成される。
+\[
+\mbox{\tt{res == 1}}
+\]
+とその否定\\
+\[
+\mbox{\tt{!(res == 1)}}
+\]
+がテストケース評価基準として生成される。
 上記プログラムを入力としてシステムを実行した結果を以下に示す。
 \lstinputlisting[xleftmargin=1cm]{result/resultS5_3.txt}
 生成したテストケース評価基準をすべて満たすテストケースを入力とした場合の上記プログラムの実行結果を以下に示す。
@@ -297,21 +335,44 @@ function countmax(\$list)\{
 以下に記述する入力された整数が偶数の場合と奇数の場合で異なる文字を表示するプログラムを用いて定義した通りの実相がされているかを確認する。
 \lstinputlisting[xleftmargin=1cm]{source/odd.c}
 このプログラムでは，変数宣言部分から{\tt int num}を取得し，標準入力命令\\
-\centerline{\tt scanf("\%lf", \&num)}から{\tt num}が入力変数であることを判定し，入力データの構造\\
-\centerline{\tt int num}が生成される。また，変数{\tt num}は{\tt int}型なので，変数{\tt num}の判別式\\
-{\tt
-\centerline{num x > 0}
-\centerline{num == 0}
-\centerline{num < 0}
-}がテストケース評価基準として生成される。また，条件判断文{\tt if}から条件式\\
-\centerline{\tt even(num) == 1}とその否定\\
-\centerline{\tt !(even(num) == 1)}がテストケース評価基準として生成される。さらに，条件式に関数{\tt even()}が使用されているので，関数{\tt even()}の定義\\
-{\tt
-\centerline {int even(int num)　　　}\\
-\centerline {\{　　　　　　　　　　　　}\\
-\centerline {　return num \% 2;}\\
-\centerline {\}　　　　　　　　　　　　}\\
-}
+\[ 
+\mbox{{\tt {scanf("\%lf", \&num)}}}
+\]
+から{\tt num}が入力変数であることを判定し，入力データの構造\\
+\[
+\mbox{{\tt int num}}
+\]
+が生成される。また，変数{\tt num}は{\tt int}型なので，変数{\tt num}の判別式\\
+\[ 
+\mbox{\tt{num > 0}} 
+\]
+\[
+\mbox{\tt{num == 0}}
+\]
+\[
+\mbox{\tt{num < 0}}
+\]
+がテストケース評価基準として生成される。また，条件判断文{\tt if}から条件式\\
+\[
+\mbox{\tt{even(num) == 1}}
+\]
+とその否定\\
+\[
+\mbox{\tt{!(even(num) == 1)}}
+\]
+がテストケース評価基準として生成される。さらに，条件式に関数{\tt even()}が使用されているので，関数{\tt even()}の定義\\
+\[ 
+\mbox{\tt{int even(int num)　　　　}} 
+\]
+\[
+\mbox{\tt{\{　　　　　　　　　　　　　}}
+\]
+\[
+\mbox{\tt{return num \% 2;}}
+\]
+\[
+\mbox{\tt{\}　　　　　　　　　　　　　}}
+\]
 が生成される。
 上記プログラムを入力としてシステムを実行した結果を以下に示す。
 \lstinputlisting[xleftmargin=1cm]{result/odtest.txt}
@@ -325,7 +386,7 @@ function countmax(\$list)\{
 偶数です。
 整数を入力してください。
 -3
-偶数です。
+奇数です。
 整数を入力してください。
 
 \end{lstlisting}
@@ -334,36 +395,75 @@ function countmax(\$list)\{
 以下に記述する入力された整数が偶数の場合と奇数の場合で異なる文字を表示するプログラムを用いて定義した通りの実相がされているかを確認する。
 \lstinputlisting[xleftmargin=1cm]{source/even.c}
 このプログラムでは，変数宣言部分から{\tt int num}を取得し，標準入力命令\\
-\centerline{\tt scanf("\%lf", \&num)}から{\tt num}が入力変数であることを判定し，入力データの構造\\
-\centerline{\tt int num}が生成される。また，変数{\tt num}は{\tt int}型なので，変数{\tt num}の判別式\\
-{\tt
-\centerline{num x > 0}
-\centerline{num == 0}
-\centerline{num < 0}
-}がテストケース評価基準として生成される。また，条件判断文{\tt if}から条件式\\
-\centerline{\tt　mod2 == 1}とその否定\\
-\centerline{\tt !(mod2 == 1)}がテストケース評価基準として生成される。さらに，条件式に入力のない変数{\tt mod2}が使用されていて，{\tt mod2}に対して関数{\tt even()}を呼び出し，戻り値を代入しているので，関数{\tt even()}の定義\\
-{\tt
-\centerline {int even(int num)　　　}\\
-\centerline {\{　　　　　　　　　　　　}\\
-\centerline {　return num \% 2;}\\
-\centerline {\}　　　　　　　　　　　　}\\
-}
+\[ 
+\mbox{{\tt {scanf("\%lf", \&num)}}}
+\]
+から{\tt num}が入力変数であることを判定し，入力データの構造\\
+\[
+\mbox{{\tt int num}}
+\]
+が生成される。また，変数{\tt num}は{\tt int}型なので，変数{\tt num}の判別式\\
+\[ 
+\mbox{\tt{num > 0}} 
+\]
+\[
+\mbox{\tt{num == 0}}
+\]
+\[
+\mbox{\tt{num < 0}}
+\]
+がテストケース評価基準として生成される。また，条件判断文{\tt if}から条件式\\
+\[
+\mbox{\tt{mod2 == 1}}
+\]
+とその否定\\
+\[
+\mbox{\tt{!(mod2 == 1)}}
+\]
+がテストケース評価基準として生成される。さらに，条件式に入力のない変数{\tt mod2}が使用されていて，{\tt mod2}に対して関数{\tt even()}を呼び出し，戻り値を代入しているので，関数{\tt even()}の定義\\
+\[ 
+\mbox{\tt{int even(int num)　　　　}} 
+\]
+\[
+\mbox{\tt{\{　　　　　　　　　　　　　}}
+\]
+\[
+\mbox{\tt{return num \% 2;}}
+\]
+\[
+\mbox{\tt{\}　　　　　　　　　　　　　}}
+\]
 と関数呼び出し部\\
-\centerline{\tt mod2 = even(num)}
+\[
+\mbox{\tt {mod2 = even(num)}}
+\]
 が生成される。上記プログラムを入力としてシステムを実行した結果を以下に示す。
 \lstinputlisting[xleftmargin=1cm]{result/evtest.txt}
 \chapter{プログラミング課題への適用}
 この章では，参考書~\cite{b1}の練習問題の模範解答から評価基準が生成できるかを検証する。
 参考書~\cite{b1}の5章（場合に応じた処理）までのサンプルコードや練習問題のうち，標準入力があるプログラムを対象に，作成したシステムによってテストケース評価基準の生成が可能か検証した。
-検証を行ったプログラムは26個であり，そのうちの17個で生成可能であった。生成できなかったプログラムはgetcharで入力を行っているプログラムと，同じ変数に複数回入力しているプログラム，switch文や条件演算子で場合分けをしているプログラムであった。
+検証を行ったプログラムは26個であり，そのうちの17個で生成可能であった。生成できなかったプログラムはgetcharで入力を行っているプログラムと，同じ変数に複数回入力しているプログラム，switch文や条件演算子で場合分けをしているプログラムであった。また，関数を含むプログラムに対して評価基準を生成できるか確認するために，身長と体重を入力しbmiを計算し，肥満度を表示するプログラムでも検証を行った。
 
 \section{評価基準を生成できた問題}
 \begin{itembox}[l]{問題1}
 身長を入力した後に体重を入力して順番に表示する。
 \end{itembox}
-
 \lstinputlisting[xleftmargin=1cm]{source/3_4.c}
+このプログラムでは，変数宣言部分から{\tt double height}と{\tt double weight}を取得し，標準入力命令\\
+\centerline{\tt scanf("\%lf", \&height)}\\
+\centerline{\tt scanf("\%lf", \&weight)}\\から{\tt height}と{\tt weight}が入力変数であることを判定し，入力のデータ構造\\
+\centerline{\tt double height}\\
+\centerline{\tt double weight}\\
+が生成される。また，変数{\tt height}と変数{\tt weight}は{\tt double}型なので，変数{\tt height}と変数{\tt weight}の判別式\\
+{\tt
+\centerline{height > 0}
+\centerline{height == 0}
+\centerline{height < 0}
+\centerline{weight > 0}
+\centerline{weight == 0}
+\centerline{weight < 0}
+}
+がテストケース評価基準として生成される。
 \lstinputlisting[xleftmargin=1cm]{result/result3_4.txt}
 \begin{lstlisting}[xleftmargin=1cm]
 身長を入力してください。
@@ -408,37 +508,21 @@ function countmax(\$list)\{
 キーボードからテストの点数を入力させ，その合計値を出力する。最後に答えを出力させる場合は，0を入力する。
 \end{itembox}
 
-\lstinputlisting[xleftmargin=1cm]{source/6_2.c}
-\lstinputlisting[xleftmargin=1cm]{result/result6_2.txt}
+\lstinputlisting[xleftmargin=1cm]{source/3_3.c}
+
 \begin{itembox}[l]{問題4}
 キーボードから5人分のテストの点数を入力させ，最高点を表示する。
 \end{itembox}
 
-\lstinputlisting[xleftmargin=1cm]{source/7_1.c}
-\lstinputlisting[xleftmargin=1cm]{result/result7_1.txt}
+\lstinputlisting[xleftmargin=1cm]{source/4_5.c}
+
 \begin{itembox}[l]{問題3}
 int型の2つの数値の最小値を返す関数int min(int x, int y)を作成し，キーボードから入力した整数の最小値を表示する。
 \end{itembox}
 
-\lstinputlisting[xleftmargin=1cm]{source/8_1.c}
-\lstinputlisting[xleftmargin=1cm]{result/result8_1.txt}
-\begin{lstlisting}[xleftmargin=1cm]
-1番目の整数を入力してください。
-1
-2番目の整数を入力してください。
-3
-最小値は1です。
-1番目の整数を入力してください。
-0
-2番目の整数を入力してください。
--2
-最小値は-2です。
-1番目の整数を入力してください。
--1
-2番目の整数を入力してください。
-0
-最小値は-1です。
-\end{lstlisting}
+\lstinputlisting[xleftmargin=1cm]{source/5_4.c}
+
+\section{関数を含むプログラムでの検証}
 \lstinputlisting[xleftmargin=1cm]{source/bmi.c}
 \lstinputlisting[xleftmargin=1cm]{result/bmiResult.txt}
 \begin{lstlisting}[xleftmargin=1cm]
