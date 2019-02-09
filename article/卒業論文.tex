@@ -234,7 +234,15 @@ function countmax(\$list)\{
 
 以下に記述する入力された小数を表示するプログラムを用いて定義した通りの実相がされているかを確認する。
 \lstinputlisting[xleftmargin=1cm]{source/Sample3_6.c}
-このプログラムでは，変数宣言部分から{\tt double num}を取得し，標準入力命令{\tt scanf}から{\tt num}が入力変数であることを判定し，入力のデータ構造{\tt double num}が生成される。また，変数{\tt num}は{\tt double}型なので，変数{\tt num}の判別式がテストケース評価基準として生成される。
+このプログラムでは，変数宣言部分から{\tt double num}を取得し，標準入力命令\\
+\centerline{\tt scanf("\%lf", \&num)}から{\tt num}が入力変数であることを判定し，入力のデータ構造\\
+\centerline{\tt double num}が生成される。また，変数{\tt num}は{\tt double}型なので，変数{\tt num}の判別式\\
+{\tt
+\centerline{num > 0}
+\centerline{num == 0}
+\centerline{num < 0}
+}
+がテストケース評価基準として生成される。
 上記プログラムを入力としてシステムを実行した結果を以下に示す。
 \lstinputlisting[xleftmargin=1cm]{result/resultS3_6.txt}
 生成したテストケース評価基準をすべて満たすテストケースを入力とした場合の上記プログラムの実行結果を以下に示す。
@@ -257,7 +265,17 @@ function countmax(\$list)\{
 
 以下に記述する入力された整数が１の場合とそれ以外の場合で異なる文字を表示するプログラムを用いて定義した通りの実相がされているかを確認する。
 \lstinputlisting[xleftmargin=1cm]{source/Sample5_3.c}
-このプログラムでは，変数宣言部分から{\tt int res}を取得し，標準入力命令{\tt scanf}から{\tt res}が入力変数であることを判定し，入力データの構造{\tt int res}が生成される。また，変数{\tt res}は{\tt int}型なので，変数{\tt res}の判別式がテストケース評価基準として生成される。また，条件判断文{\tt if}から条件式{\tt res == 1}とその否定{\tt !(res == 1)}がテストケース評価基準として生成される。
+このプログラムでは，変数宣言部分から{\tt int res}を取得し，標準入力命令\\
+\centerline{\tt scanf("\%lf", \&res)}から{\tt res}が入力変数であることを判定し，入力データの構造\\
+\centerline{\tt int res}が生成される。また，変数{\tt res}は{\tt int}型なので，変数{\tt res}の判別式\\
+{\tt
+\centerline{res > 0}
+\centerline{res == 0}
+\centerline{res < 0}
+}
+がテストケース評価基準として生成される。また，条件判断文{\tt if}から条件式\\
+\centerline{\tt res == 1}とその否定\\
+\centerline{\tt !(res == 1)}がテストケース評価基準として生成される。
 上記プログラムを入力としてシステムを実行した結果を以下に示す。
 \lstinputlisting[xleftmargin=1cm]{result/resultS5_3.txt}
 生成したテストケース評価基準をすべて満たすテストケースを入力とした場合の上記プログラムの実行結果を以下に示す。
@@ -278,7 +296,23 @@ function countmax(\$list)\{
 
 以下に記述する入力された整数が偶数の場合と奇数の場合で異なる文字を表示するプログラムを用いて定義した通りの実相がされているかを確認する。
 \lstinputlisting[xleftmargin=1cm]{source/odd.c}
-このプログラムでは，変数宣言部分から{\tt int num}を取得し，標準入力命令{\tt scanf}から{\tt num}が入力変数であることを判定し，入力データの構造{\tt int num}が生成される。また，変数{\tt num}は{\tt int}型なので，変数{\tt num}の判別式がテストケース評価基準として生成される。また，条件判断文{\tt if}から条件式{\tt even(num) == 1}とその否定{\tt !(even(num) == 1)}がテストケース評価基準として生成される。さらに，条件式に関数{\tt even()}が使用されているので，関数{\tt even()}の定義が生成される。
+このプログラムでは，変数宣言部分から{\tt int num}を取得し，標準入力命令\\
+\centerline{\tt scanf("\%lf", \&num)}から{\tt num}が入力変数であることを判定し，入力データの構造\\
+\centerline{\tt int num}が生成される。また，変数{\tt num}は{\tt int}型なので，変数{\tt num}の判別式\\
+{\tt
+\centerline{num x > 0}
+\centerline{num == 0}
+\centerline{num < 0}
+}がテストケース評価基準として生成される。また，条件判断文{\tt if}から条件式\\
+\centerline{\tt even(num) == 1}とその否定\\
+\centerline{\tt !(even(num) == 1)}がテストケース評価基準として生成される。さらに，条件式に関数{\tt even()}が使用されているので，関数{\tt even()}の定義\\
+{\tt
+\centerline {int even(int num)　　　}\\
+\centerline {\{　　　　　　　　　　　　}\\
+\centerline {　return num \% 2;}\\
+\centerline {\}　　　　　　　　　　　　}\\
+}
+が生成される。
 上記プログラムを入力としてシステムを実行した結果を以下に示す。
 \lstinputlisting[xleftmargin=1cm]{result/odtest.txt}
 生成したテストケース評価基準をすべて満たすテストケースを入力とした場合の上記プログラムの実行結果を以下に示す。
@@ -295,11 +329,29 @@ function countmax(\$list)\{
 整数を入力してください。
 
 \end{lstlisting}
-また，条件式に入力のない変数が使用されていて，その変数に関数を呼び出し，その戻り値を代入している場合は，関数呼び出し部を生成する。
+また，条件式に入力のない変数が使用されていて，その変数に関数を呼び出し，戻り値を代入している場合は，関数呼び出し部を生成する。
 
 以下に記述する入力された整数が偶数の場合と奇数の場合で異なる文字を表示するプログラムを用いて定義した通りの実相がされているかを確認する。
 \lstinputlisting[xleftmargin=1cm]{source/even.c}
-このプログラムでは，変数宣言部分から{\tt int num}を取得し，標準入力命令{\tt scanf}から{\tt num}が入力変数であることを判定し，入力データの構造{\tt int num}が生成される。また，変数{\tt num}は{\tt int}型なので，変数{\tt num}の判別式がテストケース評価基準として生成される。また，条件判断文{\tt if}から条件式{\tt mod2 == 1}とその否定{\tt !(mod2 == 1)}がテストケース評価基準として生成される。さらに，条件式に関数{\tt even()}が使用されているので，関数{\tt even()}の定義が生成される。
+このプログラムでは，変数宣言部分から{\tt int num}を取得し，標準入力命令\\
+\centerline{\tt scanf("\%lf", \&num)}から{\tt num}が入力変数であることを判定し，入力データの構造\\
+\centerline{\tt int num}が生成される。また，変数{\tt num}は{\tt int}型なので，変数{\tt num}の判別式\\
+{\tt
+\centerline{num x > 0}
+\centerline{num == 0}
+\centerline{num < 0}
+}がテストケース評価基準として生成される。また，条件判断文{\tt if}から条件式\\
+\centerline{\tt　mod2 == 1}とその否定\\
+\centerline{\tt !(mod2 == 1)}がテストケース評価基準として生成される。さらに，条件式に入力のない変数{\tt mod2}が使用されていて，{\tt mod2}に対して関数{\tt even()}を呼び出し，戻り値を代入しているので，関数{\tt even()}の定義\\
+{\tt
+\centerline {int even(int num)　　　}\\
+\centerline {\{　　　　　　　　　　　　}\\
+\centerline {　return num \% 2;}\\
+\centerline {\}　　　　　　　　　　　　}\\
+}
+と関数呼び出し部\\
+\centerline{\tt mod2 = even(num)}
+が生成される。上記プログラムを入力としてシステムを実行した結果を以下に示す。
 \lstinputlisting[xleftmargin=1cm]{result/evtest.txt}
 \chapter{プログラミング課題への適用}
 この章では，参考書~\cite{b1}の練習問題の模範解答から評価基準が生成できるかを検証する。
