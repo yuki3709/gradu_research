@@ -52,13 +52,50 @@
 \chapter{はじめに}
 本研究では，プログラミング教育において，教員が学生の作成したプログラムに対して適切な評価を行う方法を考え，その際に利用できるシステムを提案する。
 \section{背景}
-プログラミング演習おいては，教科書のソースコードを書き写してプログラムを作成することから学習を始める学生もいる。教科書のコードが正確に書き写せているかの確認をするには，教員が正しいソースコードを用意し学生の書き写したソースコードと比較すればよい。
+プログラミング演習おいては，教科書のソースコードを書き写してプログラムを作成することから学習を始める学生もいる。教科書のコードが正確に書き写せているかの確認をするには，教科書のソースコードをと学生のソースコードを一字一句比較すればよい。
+教科書のソースコードを書き写すだけではプログラムを作成できるようにはならないので，プログラミング演習では提示された仕様（課題や問題）を満たすプログラムを作成することを学ぶ必要がある。仕様を見てプログラムを作成した場合，一般に仕様を満たすプログラムは，一つに限らないため教員と学生が同じ実装をするとは限らず，教員の用意する模範解答のソースコードと学生のソースコードを単純に比較しただけでは正確な評価はできない。
 
-しかし，ただ教科書のソースコードを書き写すだけではプログラムを作成できるようにはならないので，プログラミング演習では提示された仕様を満たすプログラムを作成することを学ぶ必要がある。仕様を見てプログラムを作成した場合に教員と学生が同じ実装をするとは限らないため，教員のソースコードと学生のソースコードを単純に比較しただけでは正確な評価はできない。
-
-そこで，テストケースによってプログラムを評価する。学生自身がテストケースを設計しテストを行うことによって，学生が作成したプログラムを自身で評価することができる。しかし，学生が設計したテストケースが適切であるかを確かめるためには教員がテストケースを用意して比較しただけでは評価できない。テストケースは境界値以外の値は答えが単一ではないため，学生が設計したテストケースと教員が設計したテストケースが合致しなかったとしても，学生のテストケースが誤りであるとは限らない。
-
-したがって，学生の設計したテストケースが適切であるかを評価するための方法を考える必要がある。本研究におけるテストケース評価方法の位置づけを図\ref{a1}に示す。
+通常，プログラムが仕様を満たすかどうかはソフトウェアテストにより確かめられる。
+\begin{itemize}
+\item ソフトウェアテスト
+\begin{itemize}
+\item ソフトウェアの品質を確保するためにプログラムが仕様通りに動作しているかを確認するために行う作業である。
+\item ソフトウェアテストのテスト技法には，ホワイトボックステストとブラックボックステストがある。
+\end{itemize}
+\end{itemize}
+\begin{itemize}
+\item ホワイトボックステスト
+\begin{itemize}
+\item ソフトウェアの内部仕様やプログラムコードに基づいてテストケースを作成し，テストを実施する。
+\end{itemize}
+\end{itemize}
+\begin{itemize}
+\item ブラックボックステスト
+\begin{itemize}
+\item ソフトウェア内部の詳細を見ずに，プログラムに入力データを与え，実行結果だけを観測することで誤りを検出する。
+\end{itemize}
+\end{itemize}
+\begin{itemize}
+\item テストケース
+\begin{itemize}
+\item ソフトウェアテストを行うための入力と出力の組のことである。
+\end{itemize}
+\end{itemize}
+教員がテストケースを用意する場合のプログラミング演習では，学生は用意されたテストケースでプログラムのテストを行うことで，プログラムが仕様を満たしているかを確認することができる。しかし，学生がテストケースを設計することを演習の対象とする場合も考えられる。
+学生が設計したテストケースが適切であるか評価するには，ソースコードと同様に，教員のテストケースと学生のテストケースを一字一句の比較による評価では不十分である。
+例えば，整数を入力して値が正の場合と負の場合，0の場合でそれぞれ異なる文字を表示するかをテストする場合を考える。学生と教員がテストケースの入力を表\ref{testcase}のように用意したとする。
+\begin{table}[htb]
+\centering
+\caption{学生と教員のテストケース}
+  \begin{tabular}{|c|c|c|} \hline
+     & 学生 & 教員  \\ \hline
+    テストケース1 & 1 & 2  \\ \hline
+    テストケース2 & 0 & 0 \\ \hline
+    テストケース3 & -4 & -3 \\ \hline
+  \end{tabular}
+  \label{testcase}
+\end{table}
+教員テストケースと学生のテストケースを比較すると正の場合と負の場合の入力が異なっているため，一字一句の比較では学生のテストケースは誤りと判断される。しかし，学生のテストケースでも3つの処理を確認することができるため，実際には誤りではない。したがって，学生の設計したテストケースが適切であるかを評価するための方法を考える必要がある。本研究におけるテストケース評価方法の位置づけを図\ref{a1}に示す。
 \begin{figure}[h]
   \centering
   \includegraphics[width=130mm]{テストケース評価方法の位置づけ.png}
@@ -78,9 +115,8 @@
 テストケースチェックによって，仕様要求を満たしていないテストケースが検出され，学生のテストケースの間違いが早期に指摘される。なお，仕様要求とは，プログラムにおける関数あるいはサブルーチンの動作が規定されたものであり，戻り値や引数などが定められたものである。教員のプログラムとテストケースはこの仕様要求が満たされるとする。
 次のセルフチェックでは，テストの実行だけでなくコードカバレッジの測定が行われる。テストにパスしない場合は，学生のプログラムが正しく実装されていないことが分かり，テストにパスしたが，カバレッジが100\%でない場合は，テスト漏れが検出され学生に指摘される。最後の実装チェックでは，学生のプログラムが仕様要求の要求をすべて満たしていないことが検知され，次のテスト駆動開発サイクルを始めるよう学生に通知される。実装チェックをパスすることによって，学生が作成したプログラムとテストケースが仕様要求の要求をすべて満たしたことが確認される。
 
-しかし，この手法では学生が仕様通りのプログラムを作成した後に仕様通りのテストケースであるかの確認が行われるため，学生が自身のテストケースを用いてプログラムの確認を行うことができない。
-
-そこで，テストケースが適切であるかを判定する評価基準を用意して，評価基準に対する設計したテストケースの網羅率を求めることで評価を行う文献~\cite{a1}の手法の拡張を考える。
+この手法では，テストケースの誤りを検出した際に，具体的にどのテストケースが不足しているのか学生に通知することができない。
+そこで，テストケースが適切であるかを判定する評価基準を用意して，評価基準に対する設計したテストケースの網羅率を求めることで評価を行い，不足しているテストケースがあった場合にアドバイスを文献~\cite{a1}の手法の拡張を考える。
 \section{目的}
 本研究では，評価基準作成時における教員の負担を減らすために，テストケースの評価基準を自動化を行うことを目的とする。プログラムテストとテストケース評価基準，本研究で開発するシステムの関係を図\ref{a3}に示す。
 
@@ -289,7 +325,7 @@ function countmax(\$list)\{
 \lstinputlisting[xleftmargin=1cm]{source/Sample5_3.c}
 このプログラムでは，変数宣言部分から{\tt int res}を取得し，標準入力命令\\
 \[ 
-\mbox{{\tt {scanf("\%lf", \&res)}}}
+\mbox{{\tt {scanf("\%d", \&res)}}}
 \]
 から{\tt res}が入力変数であることを判定し，入力データの構造\\
 \[
@@ -336,7 +372,7 @@ function countmax(\$list)\{
 \lstinputlisting[xleftmargin=1cm]{source/odd.c}
 このプログラムでは，変数宣言部分から{\tt int num}を取得し，標準入力命令\\
 \[ 
-\mbox{{\tt {scanf("\%lf", \&num)}}}
+\mbox{{\tt {scanf("\%d", \&num)}}}
 \]
 から{\tt num}が入力変数であることを判定し，入力データの構造\\
 \[
@@ -396,7 +432,7 @@ function countmax(\$list)\{
 \lstinputlisting[xleftmargin=1cm]{source/even.c}
 このプログラムでは，変数宣言部分から{\tt int num}を取得し，標準入力命令\\
 \[ 
-\mbox{{\tt {scanf("\%lf", \&num)}}}
+\mbox{{\tt {scanf("\%d", \&num)}}}
 \]
 から{\tt num}が入力変数であることを判定し，入力データの構造\\
 \[
@@ -450,19 +486,38 @@ function countmax(\$list)\{
 \end{itembox}
 \lstinputlisting[xleftmargin=1cm]{source/3_4.c}
 このプログラムでは，変数宣言部分から{\tt double height}と{\tt double weight}を取得し，標準入力命令\\
-\centerline{\tt scanf("\%lf", \&height)}\\
-\centerline{\tt scanf("\%lf", \&weight)}\\から{\tt height}と{\tt weight}が入力変数であることを判定し，入力のデータ構造\\
-\centerline{\tt double height}\\
-\centerline{\tt double weight}\\
+\[ 
+\mbox{{\tt {scanf("\%lf", \&height)}}}
+\]
+\[ 
+\mbox{{\tt {scanf("\%lf", \&weight)}}}
+\]
+から{\tt height}と{\tt weight}が入力変数であることを判定し，入力のデータ構造\\
+\[
+\mbox{{\tt double height}}
+\]
+\[
+\mbox{{\tt double weight}}
+\]
 が生成される。また，変数{\tt height}と変数{\tt weight}は{\tt double}型なので，変数{\tt height}と変数{\tt weight}の判別式\\
-{\tt
-\centerline{height > 0}
-\centerline{height == 0}
-\centerline{height < 0}
-\centerline{weight > 0}
-\centerline{weight == 0}
-\centerline{weight < 0}
-}
+\[ 
+\mbox{\tt{height > 0}} 
+\]
+\[
+\mbox{\tt{height == 0}}
+\]
+\[
+\mbox{\tt{height < 0}}
+\]
+\[ 
+\mbox{\tt{weight > 0}} 
+\]
+\[
+\mbox{\tt{weight == 0}}
+\]
+\[
+\mbox{\tt{weight < 0}}
+\]
 がテストケース評価基準として生成される。
 \lstinputlisting[xleftmargin=1cm]{result/result3_4.txt}
 \begin{lstlisting}[xleftmargin=1cm]
@@ -486,11 +541,59 @@ function countmax(\$list)\{
 体重は-40.000000キロです。
 \end{lstlisting}
 \begin{itembox}[l]{問題2}
-キーボードから整数値を入力させ，値が偶数だった場合と奇数だった場合で違う文章を表示する。
+キーボードから整数を2つ入力させ，値が大きいほうを表示する。
 \end{itembox}
 
-\lstinputlisting[xleftmargin=1cm]{source/5_1.c}
-\lstinputlisting[xleftmargin=1cm]{result/result5_1.txt}
+\lstinputlisting[xleftmargin=1cm]{source/5_2.c}
+このプログラムでは，変数宣言部分から{\tt int num1}と{\tt int num2}を取得し，標準入力命令\\
+\[ 
+\mbox{{\tt {scanf("\%d", \&num1)}}}
+\]
+\[ 
+\mbox{{\tt {scanf("\%d", \&num2)}}}
+\]
+から{\tt num1}と{\tt num2}が入力変数であることを判定し，入力のデータ構造\\
+\[
+\mbox{{\tt int num1}}
+\]
+\[
+\mbox{{\tt int num2}}
+\]
+が生成される。また，変数{\tt num1}と変数{\tt num2}は{\tt int}型なので，変数{\tt num1}と変数{\tt num2}の判別式\\
+\[ 
+\mbox{\tt{num1 > 0}} 
+\]
+\[
+\mbox{\tt{num1 == 0}}
+\]
+\[
+\mbox{\tt{num1 < 0}}
+\]
+\[ 
+\mbox{\tt{num2 > 0}} 
+\]
+\[
+\mbox{\tt{num2 == 0}}
+\]
+\[
+\mbox{\tt{num2 < 0}}
+\]
+がテストケース評価基準として生成される。また，条件判断文{\tt if}から条件式\\
+\[
+\mbox{\tt{num1 < num2}}
+\]
+\[
+\mbox{\tt{num1 > num2}}
+\]
+とそれぞれの否定\\
+\[
+\mbox{\tt{!(num1 < num2)}}
+\]
+\[
+\mbox{\tt{!(num1 > num2)}}
+\]
+がテストケース評価基準として生成される。
+\lstinputlisting[xleftmargin=1cm]{result/result5_2.txt}
 \begin{lstlisting}[xleftmargin=1cm]
 整数を入力してください。
 1
@@ -502,32 +605,37 @@ function countmax(\$list)\{
 -2
 -2は偶数です。
 \end{lstlisting}
-
-\section{評価基準を生成できなかった問題}
-\begin{itembox}[l]{問題5}
-キーボードからテストの点数を入力させ，その合計値を出力する。最後に答えを出力させる場合は，0を入力する。
-\end{itembox}
-
-\lstinputlisting[xleftmargin=1cm]{source/3_3.c}
-
-\begin{itembox}[l]{問題4}
-キーボードから5人分のテストの点数を入力させ，最高点を表示する。
-\end{itembox}
-
-\lstinputlisting[xleftmargin=1cm]{source/4_5.c}
-
-\begin{itembox}[l]{問題3}
-int型の2つの数値の最小値を返す関数int min(int x, int y)を作成し，キーボードから入力した整数の最小値を表示する。
-\end{itembox}
-
-\lstinputlisting[xleftmargin=1cm]{source/5_4.c}
-
-\section{関数を含むプログラムでの検証}
 \lstinputlisting[xleftmargin=1cm]{source/bmi.c}
 \lstinputlisting[xleftmargin=1cm]{result/bmiResult.txt}
 \begin{lstlisting}[xleftmargin=1cm]
    ソースコード
 \end{lstlisting}
+\section{評価基準を生成できなかった問題}
+\begin{itembox}[l]{問題3}
+キーボードから5人分のテストの点数を入力させ，最高点を表示する。
+\end{itembox}
+\lstinputlisting[xleftmargin=1cm]{source/4_5.c}
+このプログラムでは，変数{\tt num}に対して入力が三回行われているので入力のデータ構造として
+\[
+\mbox{{\tt (int num)}\{3\}}
+\]
+が生成されなければならないが，現在は同じ変数が複数回入力される場合に回数を表示させることができず，
+\[
+\mbox{{\tt (int num)}}
+\]
+のみ生成される。
+\begin{itembox}[l]{問題4}
+入力された整数が1ならAコース，それ以外ならBコースを表示する。
+\end{itembox}
+\lstinputlisting[xleftmargin=1cm]{source/Sample5_7.c}
+このプログラムでは，変数{\tt res}が1か否かの判定が行われているため，条件式
+\[
+\mbox{\tt{res == 1}}
+\]
+\[
+\mbox{\tt{!(res == 1)}}
+\]
+が生成されなければならないが，現在は条件判断文{\tt if}以外からは条件式を抽出できないため，条件文に基づく評価基準が生成できない。
 \chapter{おわりに}
 本研究では，学生が自身でテストケースの評価を行うために用いるテストケース評価基準を自動生成する方法を提案した。
 現在対応できていない配列や繰り返し文，関数を含むプログラムからの評価基準の自動生成が今後の課題である。
