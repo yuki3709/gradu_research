@@ -8,16 +8,18 @@
 \contentsline {section}{\numberline {2.3}関数定義}{8}{section.2.3}
 \contentsline {section}{\numberline {2.4}評価基準の具体例}{8}{section.2.4}
 \contentsline {section}{\numberline {2.5}システムの評価}{9}{section.2.5}
-\contentsline {section}{\numberline {2.6}システムの課題}{9}{section.2.6}
-\contentsline {chapter}{\numberline {第3章}テストケース評価基準の自動生成}{10}{chapter.3}
-\contentsline {section}{\numberline {3.1}手法の概要}{10}{section.3.1}
-\contentsline {section}{\numberline {3.2}入力データの型に基づく評価基準}{10}{section.3.2}
-\contentsline {section}{\numberline {3.3}条件文に基づく評価基準}{12}{section.3.3}
-\contentsline {section}{\numberline {3.4}関数を含むプログラムに対する評価基準}{14}{section.3.4}
-\contentsline {chapter}{\numberline {第4章}プログラミング課題への適用}{19}{chapter.4}
-\contentsline {section}{\numberline {4.1}評価基準を生成できた問題}{19}{section.4.1}
-\contentsline {section}{\numberline {4.2}評価基準を生成できなかった問題}{23}{section.4.2}
-\contentsline {section}{\numberline {4.3}繰り返し文・配列・関数を含むプログラムでの検証}{25}{section.4.3}
-\contentsline {chapter}{\numberline {第5章}おわりに}{30}{chapter.5}
-\contentsline {chapter}{謝 辞}{31}{chapter*.2}
-\contentsline {chapter}{\numberline {参 考 文 献}}{32}{chapter*.3}
+\contentsline {section}{\numberline {2.6}システムの課題}{10}{section.2.6}
+\contentsline {chapter}{\numberline {第3章}テストケース評価基準の自動生成}{11}{chapter.3}
+\contentsline {section}{\numberline {3.1}手法の概要}{11}{section.3.1}
+\contentsline {section}{\numberline {3.2}入力データの型に基づく評価基準}{12}{section.3.2}
+\contentsline {section}{\numberline {3.3}条件文に基づく評価基準}{13}{section.3.3}
+\contentsline {section}{\numberline {3.4}関数を含むプログラムに対する評価基準}{15}{section.3.4}
+\contentsline {chapter}{\numberline {第4章}プログラミング課題への適用}{20}{chapter.4}
+\contentsline {section}{\numberline {4.1}評価基準を生成できた問題}{20}{section.4.1}
+\contentsline {section}{\numberline {4.2}評価基準を生成できなかった問題}{24}{section.4.2}
+\contentsline {section}{\numberline {4.3}繰り返し文を含むプログラムでの検証}{26}{section.4.3}
+\contentsline {section}{\numberline {4.4}配列を含むプログラムでの検証}{26}{section.4.4}
+\contentsline {section}{\numberline {4.5}関数を含むプログラムでの検証}{27}{section.4.5}
+\contentsline {chapter}{\numberline {第5章}おわりに}{31}{chapter.5}
+\contentsline {chapter}{謝 辞}{32}{chapter*.2}
+\contentsline {chapter}{\numberline {参 考 文 献}}{33}{chapter*.3}

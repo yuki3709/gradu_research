@@ -18,7 +18,9 @@
 \BOOKMARK [0][-]{chapter.4}{プログラミング課題への適用}{}% 17
 \BOOKMARK [1][-]{section.4.1}{評価基準を生成できた問題}{chapter.4}% 18
 \BOOKMARK [1][-]{section.4.2}{評価基準を生成できなかった問題}{chapter.4}% 19
-\BOOKMARK [1][-]{section.4.3}{繰り返し文・配列・関数を含むプログラムでの検証}{chapter.4}% 20
-\BOOKMARK [0][-]{chapter.5}{おわりに}{}% 21
-\BOOKMARK [0][-]{chapter*.2}{謝 辞}{}% 22
-\BOOKMARK [0][-]{chapter*.3}{}{}% 23
+\BOOKMARK [1][-]{section.4.3}{繰り返し文を含むプログラムでの検証}{chapter.4}% 20
+\BOOKMARK [1][-]{section.4.4}{配列を含むプログラムでの検証}{chapter.4}% 21
+\BOOKMARK [1][-]{section.4.5}{関数を含むプログラムでの検証}{chapter.4}% 22
+\BOOKMARK [0][-]{chapter.5}{おわりに}{}% 23
+\BOOKMARK [0][-]{chapter*.2}{謝 辞}{}% 24
+\BOOKMARK [0][-]{chapter*.3}{}{}% 25
