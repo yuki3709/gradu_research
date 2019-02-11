@@ -320,8 +320,6 @@ function countmax(\$list)\{
 \lstinputlisting[xleftmargin=1cm]{result/resultS3_6.txt}
 教員はこの条件を参考に，以下のようにそれぞれの場合におけるテストケース不足時のアドバイスを記入して，テストケース評価基準を完成させる。
 \begin{lstlisting}[xleftmargin=1cm]
-入力のデータ構造
-(double num)
 テストケース評価基準
 
 入力変数の型から生成
@@ -393,8 +391,6 @@ num < 0　入力が0より小さい場合が不足
 \lstinputlisting[xleftmargin=1cm]{result/resultS5_3.txt}
 教員はこの条件を参考に，以下のようにそれぞれの場合におけるテストケース不足時のアドバイスを記入して，テストケース評価基準を完成させる。
 \begin{lstlisting}[xleftmargin=1cm]
-入力のデータ構造
-(int res)
 テストケース評価基準
 
 入力変数の型から生成
@@ -482,14 +478,6 @@ res == 1　入力が1の場合が不足
 \lstinputlisting[xleftmargin=1cm]{result/odtest.txt}
 教員はこの条件を参考に，以下のようにそれぞれの場合におけるテストケース不足時のアドバイスを記入して，テストケース評価基準を完成させる。
 \begin{lstlisting}[xleftmargin=1cm]
-入力のデータ構造
-(int num)
-関数
-int even(int num)
-{
-    return num % 2;
-}
-
 テストケース評価基準
 
 入力変数の型から生成
@@ -573,19 +561,6 @@ even(num) == 1　入力が偶数の場合が不足
 \lstinputlisting[xleftmargin=1cm]{result/evtest.txt}
 教員はこの条件を参考に，以下のようにそれぞれの場合におけるテストケース不足時のアドバイスを記入して，テストケース評価基準を完成させる。
 \begin{lstlisting}[xleftmargin=1cm]
-入力のデータ構造
-(int num)
-関数呼び出し
-mod2 = even(num);
-
-関数
-int even(int num)
-{
-	return num % 2;
-}
-
-テストケース評価基準
-
 入力変数の型から生成
 num > 0　入力が0より大きい場合が不足
 num == 0　入力が0の場合が不足
@@ -644,9 +619,6 @@ even(num) == 1　入力が偶数の場合が不足
 \lstinputlisting[xleftmargin=1cm]{result/result3_4.txt}
 教員はこの条件を参考に，以下のようにそれぞれの場合におけるテストケース不足時のアドバイスを記入して，テストケース評価基準を完成させる。
 \begin{lstlisting}[xleftmargin=1cm]
-入力のデータ構造
-(double height double weight)
-
 テストケース評価基準
 
 入力変数の型から生成
@@ -736,9 +708,6 @@ weight < 0　体重が0より小さい場合が不足
 \lstinputlisting[xleftmargin=1cm]{result/result5_2.txt}
 教員はこの条件を参考に，以下のようにそれぞれの場合におけるテストケース不足時のアドバイスを記入して，テストケース評価基準を完成させる。
 \begin{lstlisting}[xleftmargin=1cm]
-入力のデータ構造
-(int num1 int num2)
-
 テストケース評価基準
 
 入力変数の型から生成
@@ -903,18 +872,6 @@ num1 > num2　num2がnum1より小さい場合が不足
 \lstinputlisting[xleftmargin=1cm]{result/bmiResult.txt}
 教員はこの条件を参考に，以下のようにそれぞれの場合におけるテストケース不足時のアドバイスを記入して，テストケース評価基準を完成させる。
 \begin{lstlisting}[xleftmargin=1cm]
-入力のデータ構造
-(double height double weight)
-
-関数呼び出し
-bmi = BMI(height, weight);
-
-関数
-double BMI(double height, double weight)
-{
-	return weight / ((height * height) / 10000);
-}
-
 テストケース評価基準
 
 入力変数の型から生成
@@ -965,7 +922,7 @@ BMIは27.343750です。
 -50
 0より大きい値を入力してください。
 \end{lstlisting}
-\section{分岐網羅では不十分なプログラム}
+\section{分岐網羅ではテストケースが不十分なプログラム}
 提案システムでは，条件文からテストケース評価基準を生成する際に条件文の否定を生成することで，分岐網羅を行っている。しかし以下のプログラムのように複数の条件文が組み合わさったプログラムの場合 ，分岐網羅ではすべての処理をテストすることができない。
 \lstinputlisting[xleftmargin=1cm]{source/nest.c}
 上記プログラムを入力として，提案システムによって生成されるテストケース評価基準を以下に示す。
