@@ -1,18 +1,18 @@
 \contentsline {chapter}{\numberline {第1章}はじめに}{1}{chapter.1}
 \contentsline {section}{\numberline {1.1}背景}{1}{section.1.1}
 \contentsline {section}{\numberline {1.2}目的}{4}{section.1.2}
-\contentsline {section}{\numberline {1.3}論文の構成}{5}{section.1.3}
+\contentsline {section}{\numberline {1.3}論文の構成}{4}{section.1.3}
 \contentsline {chapter}{\numberline {第2章}プログラミング演習におけるテストケース評価システム}{6}{chapter.2}
 \contentsline {section}{\numberline {2.1}テストケース評価システム}{6}{section.2.1}
-\contentsline {section}{\numberline {2.2}入力のデータ構造の定義}{7}{section.2.2}
+\contentsline {section}{\numberline {2.2}入力のデータ構造の定義}{8}{section.2.2}
 \contentsline {section}{\numberline {2.3}関数定義}{8}{section.2.3}
 \contentsline {section}{\numberline {2.4}評価基準の具体例}{8}{section.2.4}
 \contentsline {section}{\numberline {2.5}システムの評価}{9}{section.2.5}
 \contentsline {section}{\numberline {2.6}システムの課題}{10}{section.2.6}
 \contentsline {chapter}{\numberline {第3章}テストケース評価基準の自動生成}{11}{chapter.3}
 \contentsline {section}{\numberline {3.1}手法の概要}{11}{section.3.1}
-\contentsline {section}{\numberline {3.2}入力データの型に基づく評価基準}{12}{section.3.2}
-\contentsline {section}{\numberline {3.3}条件文に基づく評価基準}{13}{section.3.3}
+\contentsline {section}{\numberline {3.2}入力データの型に基づくテストケース評価基準}{12}{section.3.2}
+\contentsline {section}{\numberline {3.3}条件文に基づくテストケース評価基準}{13}{section.3.3}
 \contentsline {subsection}{\numberline {3.3.1}条件文に入力変数がある場合}{13}{subsection.3.3.1}
 \contentsline {subsection}{\numberline {3.3.2}未定義の変数が条件文にある場合}{15}{subsection.3.3.2}
 \contentsline {subsection}{\numberline {3.3.3}関数の戻り値を代入した変数が条件文にある場合}{18}{subsection.3.3.3}
@@ -22,6 +22,9 @@
 \contentsline {section}{\numberline {4.3}繰り返し文を含むプログラムでの検証}{27}{section.4.3}
 \contentsline {section}{\numberline {4.4}配列を含むプログラムでの検証}{27}{section.4.4}
 \contentsline {section}{\numberline {4.5}関数を含むプログラムでの検証}{28}{section.4.5}
-\contentsline {chapter}{\numberline {第5章}おわりに}{32}{chapter.5}
-\contentsline {chapter}{謝 辞}{33}{chapter*.2}
-\contentsline {chapter}{\numberline {参 考 文 献}}{34}{chapter*.3}
+\contentsline {chapter}{\numberline {第5章}考察}{32}{chapter.5}
+\contentsline {section}{\numberline {5.1}繰り返し文を含むプログラムへの対応}{32}{section.5.1}
+\contentsline {section}{\numberline {5.2}配列を含むプログラムへの対応}{32}{section.5.2}
+\contentsline {chapter}{\numberline {第6章}おわりに}{33}{chapter.6}
+\contentsline {chapter}{謝 辞}{34}{chapter*.2}
+\contentsline {chapter}{\numberline {参 考 文 献}}{35}{chapter*.3}
