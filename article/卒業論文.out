@@ -21,7 +21,7 @@
 \BOOKMARK [1][-]{section.5.1}{繰り返し文を含むプログラムでの検証}{chapter.5}% 20
 \BOOKMARK [1][-]{section.5.2}{配列を含むプログラムでの検証}{chapter.5}% 21
 \BOOKMARK [1][-]{section.5.3}{関数を含むプログラムでの検証}{chapter.5}% 22
-\BOOKMARK [1][-]{section.5.4}{分岐網羅ではテストケースが不十分なプログラム}{chapter.5}% 23
+\BOOKMARK [1][-]{section.5.4}{複数の条件文が組み合わさったプログラムでの検証}{chapter.5}% 23
 \BOOKMARK [0][-]{chapter.6}{おわりに}{}% 24
 \BOOKMARK [0][-]{chapter*.2}{謝 辞}{}% 25
 \BOOKMARK [0][-]{chapter*.3}{}{}% 26

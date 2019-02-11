@@ -23,7 +23,7 @@
 \contentsline {section}{\numberline {5.1}繰り返し文を含むプログラムでの検証}{30}{section.5.1}
 \contentsline {section}{\numberline {5.2}配列を含むプログラムでの検証}{30}{section.5.2}
 \contentsline {section}{\numberline {5.3}関数を含むプログラムでの検証}{31}{section.5.3}
-\contentsline {section}{\numberline {5.4}分岐網羅ではテストケースが不十分なプログラム}{35}{section.5.4}
+\contentsline {section}{\numberline {5.4}複数の条件文が組み合わさったプログラムでの検証}{35}{section.5.4}
 \contentsline {chapter}{\numberline {第6章}おわりに}{37}{chapter.6}
 \contentsline {chapter}{謝 辞}{38}{chapter*.2}
 \contentsline {chapter}{\numberline {参 考 文 献}}{39}{chapter*.3}
